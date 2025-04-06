@@ -56,12 +56,10 @@ public class HotelOwner {
 		AadharCard, PANCard, VoterID, Passport, DrivingLicence
 	}
 
-	
 	public enum IsVerified {
 		Verified, Pending, NotVerified
 	}
 
-	
 	public int getId() {
 		return id;
 	}
@@ -157,7 +155,5 @@ public class HotelOwner {
 	public void setIsVerified(IsVerified isVerified) {
 		this.isVerified = isVerified;
 	}
-	
-	
 
 }

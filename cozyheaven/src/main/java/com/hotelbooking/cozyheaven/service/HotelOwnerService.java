@@ -9,6 +9,6 @@ import com.hotelbooking.cozyheaven.repository.HotelOwnerRepository;
 public class HotelOwnerService 
 {
 	@Autowired
-	private HotelOwnerRepository hor;
+	private HotelOwnerRepository hotelOwnerRepository;
 
 }

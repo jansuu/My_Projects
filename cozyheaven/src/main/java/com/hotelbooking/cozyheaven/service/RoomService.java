@@ -9,6 +9,6 @@ import com.hotelbooking.cozyheaven.repository.RoomRepository;
 public class RoomService 
 {
 	@Autowired
-	private RoomRepository rr;
+	private RoomRepository repository;
 
 }

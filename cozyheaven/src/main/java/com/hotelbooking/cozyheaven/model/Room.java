@@ -10,34 +10,43 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Room 
-{
+public class Room {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
 	@Column(nullable = false)
-    private String name;
-	
+	private String name;
+
 	@Column(nullable = false)
 	private double pricePerNight;
-	
+
 	@Column(nullable = false)
 	private int maxCapacity;
-	
+
 	@Column(nullable = false)
-    private String aminities;
-	
+	private String aminities;
+
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private RoomAvailabilityStatus availabilityStatus;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private RoomType type;
-	
-	 @ManyToOne
-	 private Hotel hotel;
+
+	@ManyToOne
+	private Hotel hotel;
+
+	// ENUM
+	public enum RoomAvailabilityStatus {
+		AVAILABLE, NOT_AVAILABLE
+
+	}
+
+	public enum RoomType {
+		SINGLE, DOUBLE, SUITE, DELUXE
+	}
 
 	public int getId() {
 		return id;
@@ -102,6 +111,5 @@ public class Room
 	public void setHotel(Hotel hotel) {
 		this.hotel = hotel;
 	}
-	 
 
 }

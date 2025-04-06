@@ -8,9 +8,8 @@ import com.hotelbooking.cozyheaven.service.CancellationRequestService;
 
 @RestController
 @RequestMapping("/api/cancellationrequest")
-public class CancellationRequestController 
-{
+public class CancellationRequestController {
 	@Autowired
-	private CancellationRequestService crs;
+	private CancellationRequestService cancellationRequestService;
 
 }

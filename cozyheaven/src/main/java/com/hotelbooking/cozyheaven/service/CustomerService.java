@@ -9,6 +9,6 @@ import com.hotelbooking.cozyheaven.repository.CustomerRepository;
 public class CustomerService 
 {
 	@Autowired
-	private CustomerRepository cr;
+	private CustomerRepository customerRepository;
 
 }

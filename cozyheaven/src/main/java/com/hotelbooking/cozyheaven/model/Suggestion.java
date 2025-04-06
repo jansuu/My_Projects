@@ -9,8 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Suggestion
-{
+public class Suggestion {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,24 +18,34 @@ public class Suggestion
 	private String content;
 	@Enumerated(EnumType.STRING)
 	private SuggestionStatus suggestionStatus;
+
+	public enum SuggestionStatus {
+		PENDING, REVIEWED, IMPLEMENTED, REJECTED
+
+	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getContent() {
 		return content;
 	}
+
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 	public SuggestionStatus getSuggestionStatus() {
 		return suggestionStatus;
 	}
+
 	public void setSuggestionStatus(SuggestionStatus suggestionStatus) {
 		this.suggestionStatus = suggestionStatus;
 	}
-	
 
 }

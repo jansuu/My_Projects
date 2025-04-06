@@ -11,6 +11,6 @@ import com.hotelbooking.cozyheaven.service.UserService;
 public class UserController 
 {
 	@Autowired
-	private UserService us;
+	private UserService userService;
 
 }

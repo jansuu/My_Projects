@@ -9,74 +9,72 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Customer 
-{
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private int id;
+public class Customer {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-	    @Column(nullable = false)
-	    private String name;
-	    
-	    @Column(nullable = false)
-	    private String email;
-	    
-	    @Column(nullable = false)
-	    private String address;
-	    
-	    @Column(nullable = false)
-	    private long contact;
-	    
-	    @Column(nullable = false)
-	    private LocalDateTime accountCreatedAt;
+	@Column(nullable = false)
+	private String name;
 
-		public int getId() {
-			return id;
-		}
+	@Column(nullable = false)
+	private String email;
 
-		public void setId(int id) {
-			this.id = id;
-		}
+	@Column(nullable = false)
+	private String address;
 
-		public String getName() {
-			return name;
-		}
+	@Column(nullable = false)
+	private long contact;
 
-		public void setName(String name) {
-			this.name = name;
-		}
+	@Column(nullable = false)
+	private LocalDateTime accountCreatedAt;
 
-		public String getEmail() {
-			return email;
-		}
+	public int getId() {
+		return id;
+	}
 
-		public void setEmail(String email) {
-			this.email = email;
-		}
+	public void setId(int id) {
+		this.id = id;
+	}
 
-		public String getAddress() {
-			return address;
-		}
+	public String getName() {
+		return name;
+	}
 
-		public void setAddress(String address) {
-			this.address = address;
-		}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-		public long getContact() {
-			return contact;
-		}
+	public String getEmail() {
+		return email;
+	}
 
-		public void setContact(long contact) {
-			this.contact = contact;
-		}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-		public LocalDateTime getAccountCreatedAt() {
-			return accountCreatedAt;
-		}
+	public String getAddress() {
+		return address;
+	}
 
-		public void setAccountCreatedAt(LocalDateTime accountCreatedAt) {
-			this.accountCreatedAt = accountCreatedAt;
-		}
-	    
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public long getContact() {
+		return contact;
+	}
+
+	public void setContact(long contact) {
+		this.contact = contact;
+	}
+
+	public LocalDateTime getAccountCreatedAt() {
+		return accountCreatedAt;
+	}
+
+	public void setAccountCreatedAt(LocalDateTime accountCreatedAt) {
+		this.accountCreatedAt = accountCreatedAt;
+	}
 
 }

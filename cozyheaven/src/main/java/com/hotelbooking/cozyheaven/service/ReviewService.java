@@ -3,12 +3,12 @@ package com.hotelbooking.cozyheaven.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hotelbooking.cozyheaven.repository.BookingRepository;
+import com.hotelbooking.cozyheaven.repository.ReviewRepository;
 
 @Service
-public class BookingService 
-{
+public class ReviewService {
+	
 	@Autowired
-	private BookingRepository bookingRepository;
+	private ReviewRepository reviewRepository;
 
 }

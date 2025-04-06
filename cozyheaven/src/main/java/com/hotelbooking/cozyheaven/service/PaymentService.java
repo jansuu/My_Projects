@@ -9,6 +9,6 @@ import com.hotelbooking.cozyheaven.repository.PaymentRepository;
 public class PaymentService 
 {
 	@Autowired
-	private PaymentRepository pr;
+	private PaymentRepository paymentRepository;
 
 }

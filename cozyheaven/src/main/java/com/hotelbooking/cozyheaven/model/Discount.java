@@ -8,8 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Discount
-{
+public class Discount {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,44 +20,53 @@ public class Discount
 	private LocalDate validTo;
 	@ManyToOne
 	private Season season;
-	
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getCoupon() {
 		return coupon;
 	}
+
 	public void setCoupon(String coupon) {
 		this.coupon = coupon;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public int getPercentage() {
 		return percentage;
 	}
+
 	public void setPercentage(int percentage) {
 		this.percentage = percentage;
 	}
+
 	public LocalDate getValidFromm() {
 		return validFromm;
 	}
+
 	public void setValidFromm(LocalDate validFromm) {
 		this.validFromm = validFromm;
 	}
+
 	public LocalDate getValidTo() {
 		return validTo;
 	}
+
 	public void setValidTo(LocalDate validTo) {
 		this.validTo = validTo;
 	}
-	
-	
+
 }

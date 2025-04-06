@@ -9,6 +9,6 @@ import com.hotelbooking.cozyheaven.repository.CancellationRequestRepository;
 public class CancellationRequestService
 {
 	@Autowired
-	private CancellationRequestRepository crr; 
+	private CancellationRequestRepository cancellationRequestRepository; 
 
 }

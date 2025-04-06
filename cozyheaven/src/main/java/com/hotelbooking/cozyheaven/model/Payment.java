@@ -12,31 +12,41 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Payment 
-{
+public class Payment {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
 	@Column(nullable = false)
 	private double amountPaid;
-	
+
 	@Column(nullable = false)
 	private double totalAmount;
-	
+
 	@Column(nullable = false)
-    private LocalDateTime paymentDate;
-	
+	private LocalDateTime paymentDate;
+
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private PaymentMethod paymentMethod;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private PaymentStatus status;
-	
+
 	@ManyToOne
 	private Booking booking;
+
+	// ENUM
+	public enum PaymentMethod {
+		UPI, CREDIT, DEBIT
+
+	}
+
+	public enum PaymentStatus {
+		COMPLETED, PENDING, CANCELLED
+
+	}
 
 	public int getId() {
 		return id;
@@ -93,7 +103,5 @@ public class Payment
 	public void setBooking(Booking booking) {
 		this.booking = booking;
 	}
-	
-	
 
 }

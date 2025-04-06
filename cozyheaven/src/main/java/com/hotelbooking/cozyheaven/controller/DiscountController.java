@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hotelbooking.cozyheaven.service.PaymentService;
+import com.hotelbooking.cozyheaven.service.DiscountService;
 
 @RestController
-@RequestMapping("/api/payment")
-public class PaymentController {
+@RequestMapping("/api/discount")
+public class DiscountController {
 	@Autowired
-	private PaymentService paymentService;
+	private DiscountService discountService;
 
 }

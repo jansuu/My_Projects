@@ -1,6 +1,5 @@
 package com.hotelbooking.cozyheaven.model;
 
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -14,39 +13,44 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Booking 
-{
+public class Booking {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
 	@Column(nullable = false)
 	private LocalDate checkIn;
-	
+
 	@Column(nullable = false)
 	private LocalDate checkOut;
-	
+
 	@Column(nullable = false)
 	private int capacity;
-	
+
 	@Column(nullable = false)
 	private double toatlAmount;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private BookingStatus status;
-	
+
 	@Column(nullable = false)
 	private LocalDateTime bookedAt;
-	
+
 	@ManyToOne
 	private Customer customer;
-	
+
 	@ManyToOne
 	private Room room;
-	
+
 	@ManyToOne
 	private Booking booking;
+
+	// ENUM
+	public enum BookingStatus {
+		CONFIRMED, ON_PROCESS, CANCELLED
+
+	}
 
 	public int getId() {
 		return id;
@@ -119,8 +123,5 @@ public class Booking
 	public void setRoom(Room room) {
 		this.room = room;
 	}
-	
-	
-	
 
 }

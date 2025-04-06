@@ -9,9 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
 @Entity
-public class Review 
-{
-
+public class Review {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,43 +19,54 @@ public class Review
 	private LocalDate reviewDate;
 	private String responseText;
 	private LocalDate responseDate;
-	
+
 	@OneToOne
 	private Suggestion suggestion;
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public int getRating() {
 		return rating;
 	}
+
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+
 	public String getComment() {
 		return comment;
 	}
+
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
 	public LocalDate getReviewDate() {
 		return reviewDate;
 	}
+
 	public void setReviewDate(LocalDate reviewDate) {
 		this.reviewDate = reviewDate;
 	}
+
 	public String getResponseText() {
 		return responseText;
 	}
+
 	public void setResponseText(String responseText) {
 		this.responseText = responseText;
 	}
+
 	public LocalDate getResponseDate() {
 		return responseDate;
 	}
+
 	public void setResponseDate(LocalDate responseDate) {
 		this.responseDate = responseDate;
 	}

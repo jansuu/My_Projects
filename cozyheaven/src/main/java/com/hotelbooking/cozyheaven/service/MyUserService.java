@@ -13,12 +13,12 @@ import com.hotelbooking.cozyheaven.repository.UserRepository;
 public class MyUserService implements UserDetailsService 
 {
 	@Autowired
-	private UserRepository usr;
+	private UserRepository userRepository;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
 	{
-		return usr.findByUsername(username);
+		return userRepository.findByUsername(username);
 	}
 
 }

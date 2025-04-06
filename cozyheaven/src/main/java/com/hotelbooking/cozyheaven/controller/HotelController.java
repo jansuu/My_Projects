@@ -8,9 +8,8 @@ import com.hotelbooking.cozyheaven.service.HotelService;
 
 @RestController
 @RequestMapping("/api/hotel")
-public class HotelController 
-{
+public class HotelController {
 	@Autowired
-	private HotelService hs;
+	private HotelService hotelService;
 
 }

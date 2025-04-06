@@ -8,9 +8,8 @@ import com.hotelbooking.cozyheaven.service.RefundService;
 
 @RestController
 @RequestMapping("/api/refund")
-public class RefundController 
-{
+public class RefundController {
 	@Autowired
-	private RefundService rfs;
+	private RefundService refundService;
 
 }

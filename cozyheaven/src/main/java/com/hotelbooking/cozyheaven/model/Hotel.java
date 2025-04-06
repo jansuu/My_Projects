@@ -14,94 +14,94 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Hotel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-    @Column(nullable = false)
-    private String name;
+	@Column(nullable = false)
+	private String name;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private HotelType type;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private HotelType type;
 
-    @Column(nullable = false)
-    private String description;
+	@Column(nullable = false)
+	private String description;
 
-    @Column(nullable = false)
-    private String address;
+	@Column(nullable = false)
+	private String address;
 
-    @Column(nullable = false)
-    private String city;
+	@Column(nullable = false)
+	private String city;
 
-    @Column(nullable = false)
-    private String state;
+	@Column(nullable = false)
+	private String state;
 
-    @Column(nullable = false)
-    private String zip;
+	@Column(nullable = false)
+	private String zip;
 
-    @Column(nullable = false)
-    private String country;
+	@Column(nullable = false)
+	private String country;
 
-    @Column(nullable = false)
-    private String contactEmail;
+	@Column(nullable = false)
+	private String contactEmail;
 
-    @Column(nullable = false)
-    private long contact;
+	@Column(nullable = false)
+	private long contact;
 
-    @Column(nullable = false)
-    private String imageUrls;
+	@Column(nullable = false)
+	private String imageUrls;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Status status;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private Status status;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Availability isAvailable;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private Availability isAvailable;
 
-    @Column(nullable = false)
-    private String commonAmenities;
+	@Column(nullable = false)
+	private String commonAmenities;
 
-    @Column(nullable = false)
-    private String licenseDetails;
+	@Column(nullable = false)
+	private String licenseDetails;
 
-    @Column(nullable = false)
-    private String propertyProofDetails;
+	@Column(nullable = false)
+	private String propertyProofDetails;
 
-    @Column(nullable = false)
-    private double starRating;
+	@Column(nullable = false)
+	private double starRating;
 
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
+	@Column(nullable = false)
+	private LocalDateTime createdAt;
 
-    @Column(nullable = false)
-    private LocalDateTime approvedAt;
+	@Column(nullable = false)
+	private LocalDateTime approvedAt;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private DeletionRequest deletionRequested;
-    
-    // relationship
-    @ManyToOne
-    private HotelOwner hotelOwner;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private DeletionRequest deletionRequested;
 
-    // Enum
-    public enum HotelType {
-        LUXURY, BUDGET, HOSTEL, VILLA
-    }
+	// relationship
+	@ManyToOne
+	private HotelOwner hotelOwner;
 
-    public enum Status {
-        PENDING, APPROVED, REJECTED
-    }
+	// Enum
+	public enum HotelType {
+		LUXURY, BUDGET, HOSTEL, VILLA
+	}
 
-    public enum Availability {
-        YES, NO
-    }
+	public enum Status {
+		PENDING, APPROVED, REJECTED
+	}
 
-    public enum DeletionRequest {
-        YES, NO
-    }
+	public enum Availability {
+		YES, NO
+	}
+
+	public enum DeletionRequest {
+		YES, NO
+	}
 
 	public int getId() {
 		return id;
@@ -271,9 +271,4 @@ public class Hotel {
 		this.deletionRequested = deletionRequested;
 	}
 
-	
-
-    
-    
-    
 }

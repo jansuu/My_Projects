@@ -14,26 +14,25 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class User implements UserDetails 
-{
+public class User implements UserDetails {
 	private static final long serialVersionUID = 5121238707792419121L;
 	@Id
- 	@GeneratedValue(strategy = GenerationType.IDENTITY)
- 	private int id; 
- 	
- 	@Column(nullable = false)
- 	private String username;
- 	
- 	@Column(nullable = false)
- 	private String email; 
- 	
- 	@Column(nullable = false)
- 	private String password; 
- 	
- 	@Column(nullable = false)
- 	private String confirmPassword; 
- 	
- 	private String role;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	@Column(nullable = false)
+	private String username;
+
+	@Column(nullable = false)
+	private String email;
+
+	@Column(nullable = false)
+	private String password;
+
+	@Column(nullable = false)
+	private String confirmPassword;
+
+	private String role;
 
 	public int getId() {
 		return id;
@@ -82,18 +81,17 @@ public class User implements UserDetails
 	public void setRole(String role) {
 		this.role = role;
 	}
- 	
+
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities()
-	{
+	public Collection<? extends GrantedAuthority> getAuthorities() {
 		SimpleGrantedAuthority sga = new SimpleGrantedAuthority(role);
-		
+
 		Collection<GrantedAuthority> list = new ArrayList<>();
-		
+
 		list.add(sga);
-		
+
 		return list;
-		
+
 	}
 
 }

@@ -14,41 +14,33 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class CancellationRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-    @Column(nullable = false)
-    private LocalDateTime requestDate;
+	@Column(nullable = false)
+	private LocalDateTime requestDate;
 
-    @Column(nullable = false)
-    private String reason;
+	@Column(nullable = false)
+	private String reason;
 
-    @Column(nullable = false)
-    private String details;
+	@Column(nullable = false)
+	private String details;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Status status;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private Status status;
 
-    @Column(nullable = false)
-    private LocalDateTime processedAt;
-    
-    @ManyToOne
-    private Booking booking;
+	@Column(nullable = false)
+	private LocalDateTime processedAt;
 
-    public Booking getBooking() {
-		return booking;
-	}
-
-	public void setBooking(Booking booking) {
-		this.booking = booking;
-	}
+	@ManyToOne
+	private Booking booking;
 
 	// Enum
-    public enum Status {
-        REQUESTED, APPROVED, REJECTED, PROCESSED
-    }
+	public enum Status {
+		REQUESTED, APPROVED, REJECTED, PROCESSED
+	}
 
 	public int getId() {
 		return id;
@@ -98,6 +90,12 @@ public class CancellationRequest {
 		this.processedAt = processedAt;
 	}
 
-	
-    
+	public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
+
 }

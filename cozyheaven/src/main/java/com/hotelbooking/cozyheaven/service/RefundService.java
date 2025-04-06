@@ -9,6 +9,6 @@ import com.hotelbooking.cozyheaven.repository.RefundRepository;
 public class RefundService 
 {
 	@Autowired
-	private RefundRepository rfr;
+	private RefundRepository refundRepository;
 
 }

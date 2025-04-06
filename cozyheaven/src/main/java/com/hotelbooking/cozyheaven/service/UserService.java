@@ -9,6 +9,6 @@ import com.hotelbooking.cozyheaven.repository.UserRepository;
 public class UserService 
 {
 	@Autowired
-	private UserRepository ur;
+	private UserRepository userRepository;
 
 }
