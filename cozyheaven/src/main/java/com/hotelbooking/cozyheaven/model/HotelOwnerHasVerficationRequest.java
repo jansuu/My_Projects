@@ -1,20 +1,21 @@
 package com.hotelbooking.cozyheaven.model;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-
-public class HotelownerHasVerficationRequest {
+@Entity
+public class HotelOwnerHasVerficationRequest {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@ManyToOne
-	private VerificationRequest verificationrequest;
+	private VerificationRequest verificationRequest;
 	
 	@ManyToOne
-	private HotelOwner hotelowner;
+	private HotelOwner hotelOwner;
 
 }

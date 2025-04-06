@@ -2,6 +2,7 @@ package com.hotelbooking.cozyheaven.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,19 +15,14 @@ public class Review {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(nullable = false)
 	private int rating;
 	private String comment;
+	@Column(nullable = false)
 	private LocalDate reviewDate;
+	
 	private String responseText;
 	private LocalDate responseDate;
-
-	public Booking getBooking() {
-		return booking;
-	}
-
-	public void setBooking(Booking booking) {
-		this.booking = booking;
-	}
 
 	@ManyToOne
 	private Booking booking;
@@ -77,5 +73,12 @@ public class Review {
 
 	public void setResponseDate(LocalDate responseDate) {
 		this.responseDate = responseDate;
+	}
+	public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
 	}
 }

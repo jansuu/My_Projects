@@ -17,16 +17,6 @@ public class Refund {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    public CancellationRequest getCancellationRequest() {
-		return cancellationRequest;
-	}
-
-
-	public void setCancellationRequest(CancellationRequest cancellationRequest) {
-		this.cancellationRequest = cancellationRequest;
-	}
-
-
 	@Column(nullable = false)
     private Double amountRefunded;
 
@@ -98,6 +88,15 @@ public class Refund {
 
 	public void setProcessedDate(LocalDateTime processedDate) {
 		this.processedDate = processedDate;
+	}
+	
+	public CancellationRequest getCancellationRequest() {
+		return cancellationRequest;
+	}
+
+
+	public void setCancellationRequest(CancellationRequest cancellationRequest) {
+		this.cancellationRequest = cancellationRequest;
 	}
     
     

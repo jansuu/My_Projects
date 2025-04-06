@@ -1,6 +1,8 @@
 package com.hotelbooking.cozyheaven.model;
 
 import java.time.LocalDate;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,10 +15,15 @@ public class Discount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(nullable = false)
 	private String coupon;
+	@Column(nullable = false)
 	private String description;
+	@Column(nullable = false)
 	private int percentage;
+	@Column(nullable = false)
 	private LocalDate validFromm;
+	@Column(nullable = false)
 	private LocalDate validTo;
 	@ManyToOne
 	private Season season;
