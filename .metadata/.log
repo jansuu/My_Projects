@@ -426,3 +426,15 @@ Java Model Exception: Error in Java Model (code 969): cozyheaven does not exist
 
 !ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-06 14:34:56.184
 !MESSAGE Boot project ADDED: cozyheaven
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-06 14:52:21.788
+!MESSAGE Classpath changed for project: cozyheaven
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-06 14:52:21.829
+!MESSAGE Classpath changed for project: cozyheaven
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-06 14:52:26.914
+!MESSAGE Classpath changed for project: cozyheaven
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2025-04-06 14:52:38.033
+!MESSAGE Classpath changed for project: cozyheaven
