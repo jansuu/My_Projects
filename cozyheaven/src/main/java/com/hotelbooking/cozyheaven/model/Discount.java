@@ -1,11 +1,11 @@
 package com.hotelbooking.cozyheaven.model;
 
 import java.time.LocalDate;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Discount
@@ -19,6 +19,10 @@ public class Discount
 	private int percentage;
 	private LocalDate validFromm;
 	private LocalDate validTo;
+	@ManyToOne
+	private Season season;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -55,5 +59,6 @@ public class Discount
 	public void setValidTo(LocalDate validTo) {
 		this.validTo = validTo;
 	}
+	
 	
 }

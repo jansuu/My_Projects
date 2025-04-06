@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Review 
@@ -20,6 +21,10 @@ public class Review
 	private LocalDate reviewDate;
 	private String responseText;
 	private LocalDate responseDate;
+	
+	@OneToOne
+	private Suggestion suggestion;
+	
 	public int getId() {
 		return id;
 	}

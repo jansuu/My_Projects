@@ -44,6 +44,9 @@ public class Booking
 	
 	@ManyToOne
 	private Room room;
+	
+	@ManyToOne
+	private Booking booking;
 
 	public int getId() {
 		return id;
