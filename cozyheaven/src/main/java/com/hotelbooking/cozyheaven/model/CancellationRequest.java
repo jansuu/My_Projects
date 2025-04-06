@@ -9,6 +9,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class CancellationRequest {
@@ -32,8 +33,19 @@ public class CancellationRequest {
 
     @Column(nullable = false)
     private LocalDateTime processedAt;
+    
+    @ManyToOne
+    private Booking booking;
 
-    // Enum
+    public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
+
+	// Enum
     public enum Status {
         REQUESTED, APPROVED, REJECTED, PROCESSED
     }

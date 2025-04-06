@@ -86,7 +86,7 @@ public class Hotel {
     @ManyToOne
     private HotelOwner hotelOwner;
 
-    // Enums
+    // Enum
     public enum HotelType {
         LUXURY, BUDGET, HOSTEL, VILLA
     }
@@ -100,7 +100,7 @@ public class Hotel {
     }
 
     public enum DeletionRequest {
-        Yes, No
+        YES, NO
     }
 
 	public int getId() {
