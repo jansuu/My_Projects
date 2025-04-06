@@ -17,7 +17,17 @@ public class Refund {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
+    public CancellationRequest getCancellationRequest() {
+		return cancellationRequest;
+	}
+
+
+	public void setCancellationRequest(CancellationRequest cancellationRequest) {
+		this.cancellationRequest = cancellationRequest;
+	}
+
+
+	@Column(nullable = false)
     private Double amountRefunded;
 
     @Column(nullable = false)

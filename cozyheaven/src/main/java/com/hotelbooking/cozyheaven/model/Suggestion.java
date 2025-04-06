@@ -7,6 +7,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Suggestion {
@@ -22,6 +23,17 @@ public class Suggestion {
 	public enum SuggestionStatus {
 		PENDING, REVIEWED, IMPLEMENTED, REJECTED
 
+	}
+	
+	@ManyToOne
+	private Review review;
+
+	public Review getReview() {
+		return review;
+	}
+
+	public void setReview(Review review) {
+		this.review = review;
 	}
 
 	public int getId() {

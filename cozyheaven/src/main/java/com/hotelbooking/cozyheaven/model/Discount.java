@@ -20,6 +20,25 @@ public class Discount {
 	private LocalDate validTo;
 	@ManyToOne
 	private Season season;
+	
+	@ManyToOne
+	private Hotel hotel;
+
+	public Season getSeason() {
+		return season;
+	}
+
+	public void setSeason(Season season) {
+		this.season = season;
+	}
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
 
 	public int getId() {
 		return id;

@@ -43,8 +43,6 @@ public class Booking {
 	@ManyToOne
 	private Room room;
 
-	@ManyToOne
-	private Booking booking;
 
 	// ENUM
 	public enum BookingStatus {

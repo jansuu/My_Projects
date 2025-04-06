@@ -2,6 +2,7 @@ package com.hotelbooking.cozyheaven.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -15,22 +16,54 @@ public class Report {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	@Column(nullable = false)
 	private String reportName;
+
+	@Column(nullable = false)
 	private double revenueGenerated;
+
+	@Column(nullable = false)
 	private LocalDate generatedDate;
+
+	@Column(nullable = false)
 	private int month;
+
+	@Column(nullable = false)
 	private int year;
+
+	@Column(nullable = false)
 	private int totalBooking;
+
+	@Column(nullable = false)
 	private int totalRefund;
+
+	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private RoomType roomType;
+
+	@Column(nullable = false)
 	private int totalRooms;
+
+	@Column(nullable = false)
 	private int bookedRooms;
+
+	@Column(nullable = false)
 	private int occupancyRate;
+
+	@Column(nullable = false)
 	private String couponUsed;
+
+	@Column(nullable = false)
 	private float avgBooking;
+
+	@Column(nullable = false)
 	private LocalDate validFrom;
+
+	@Column(nullable = false)
 	private LocalDate validTo;
+
+	@Column(nullable = false)
 	private int usageCount;
 
 	public enum RoomType {
