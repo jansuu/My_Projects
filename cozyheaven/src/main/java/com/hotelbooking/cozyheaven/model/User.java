@@ -29,9 +29,6 @@ public class User implements UserDetails {
 	@Column(nullable = false)
 	private String password;
 
-	@Column(nullable = false)
-	private String confirmPassword;
-
 	private String role;
 
 	public int getId() {
@@ -64,14 +61,6 @@ public class User implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
 	}
 
 	public String getRole() {

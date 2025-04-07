@@ -11,5 +11,7 @@ import com.hotelbooking.cozyheaven.service.HotelOwnerService;
 public class HotelOwnerController {
 	@Autowired
 	private HotelOwnerService hotelOwnerService;
+	
+	
 
 }

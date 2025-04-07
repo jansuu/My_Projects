@@ -6,19 +6,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.hotelbooking.cozyheaven.repository.UserRepository;
-
+import com.hotelbooking.cozyheaven.repository.AuthRepository;
 
 @Service
-public class MyUserService implements UserDetailsService 
-{
+public class MyUserService implements UserDetailsService {
 	@Autowired
-	private UserRepository userRepository;
-	
+	private AuthRepository authRepository;
+
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
-	{
-		return userRepository.findByUsername(username);
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return authRepository.findByUsername(username);
 	}
 
 }
