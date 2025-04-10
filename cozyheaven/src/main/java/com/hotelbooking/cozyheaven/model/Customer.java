@@ -24,7 +24,7 @@ public class Customer {
 	private String address;
 
 	@Column(nullable = false)
-	private long contact;
+	private String contact;
 
 	@Column(nullable = false)
 	private LocalDateTime accountCreatedAt;
@@ -61,11 +61,13 @@ public class Customer {
 		this.address = address;
 	}
 
-	public long getContact() {
+	
+
+	public String getContact() {
 		return contact;
 	}
 
-	public void setContact(long contact) {
+	public void setContact(String contact) {
 		this.contact = contact;
 	}
 

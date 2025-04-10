@@ -26,7 +26,7 @@ public class HotelOwner {
 	private String contact;
 
 	@Column(nullable = false)
-	private String Adress;
+	private String address;
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
@@ -92,12 +92,14 @@ public class HotelOwner {
 		this.contact = contact;
 	}
 
-	public String getAdress() {
-		return Adress;
+
+
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		Adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getGovernmentIDNumber() {

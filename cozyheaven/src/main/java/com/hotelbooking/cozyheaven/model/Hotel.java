@@ -100,7 +100,17 @@ public class Hotel {
 	}
 
 	public enum DeletionRequest {
-		YES, NO
+		Yes,No
+	}
+	
+	
+
+	public HotelOwner getHotelOwner() {
+		return hotelOwner;
+	}
+
+	public void setHotelOwner(HotelOwner hotelOwner) {
+		this.hotelOwner = hotelOwner;
 	}
 
 	public int getId() {
