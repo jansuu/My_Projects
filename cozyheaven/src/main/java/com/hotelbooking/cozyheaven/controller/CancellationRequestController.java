@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hotelbooking.cozyheaven.enums.Status;
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
 import com.hotelbooking.cozyheaven.model.Booking;
 import com.hotelbooking.cozyheaven.model.CancellationRequest;
-import com.hotelbooking.cozyheaven.model.CancellationRequest.Status;
 import com.hotelbooking.cozyheaven.service.BookingService;
 import com.hotelbooking.cozyheaven.service.CancellationRequestService;
 

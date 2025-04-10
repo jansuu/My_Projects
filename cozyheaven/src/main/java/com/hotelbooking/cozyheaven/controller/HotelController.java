@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hotelbooking.cozyheaven.enums.DeletionRequest;
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
 import com.hotelbooking.cozyheaven.model.Hotel;
-import com.hotelbooking.cozyheaven.model.Hotel.DeletionRequest;
 import com.hotelbooking.cozyheaven.model.HotelOwner;
 import com.hotelbooking.cozyheaven.service.HotelOwnerService;
 import com.hotelbooking.cozyheaven.service.HotelService;

@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 @Entity
-public class HotelOwnerHasVerficationRequest {
+public class OwnerVerificationReq {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,6 +2,8 @@ package com.hotelbooking.cozyheaven.model;
 
 import java.time.LocalDate;
 
+import com.hotelbooking.cozyheaven.enums.RoomType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -65,10 +67,6 @@ public class Report {
 
 	@Column(nullable = false)
 	private int usageCount;
-
-	public enum RoomType {
-		SINGLE, DOUBLE, SUITE, DELUXE
-	}
 
 	public int getId() {
 		return id;

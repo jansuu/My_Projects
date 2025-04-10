@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hotelbooking.cozyheaven.enums.RoomType;
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
 import com.hotelbooking.cozyheaven.model.Hotel;
-import com.hotelbooking.cozyheaven.model.Report.RoomType;
 import com.hotelbooking.cozyheaven.model.Room;
 import com.hotelbooking.cozyheaven.service.HotelService;
 import com.hotelbooking.cozyheaven.service.RoomService;

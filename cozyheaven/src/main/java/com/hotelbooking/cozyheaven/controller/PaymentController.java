@@ -1,27 +1,19 @@
 package com.hotelbooking.cozyheaven.controller;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hotelbooking.cozyheaven.enums.PaymentStatus;
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
 import com.hotelbooking.cozyheaven.model.Booking;
 import com.hotelbooking.cozyheaven.model.Payment;
-import com.hotelbooking.cozyheaven.model.Payment.PaymentStatus;
-import com.hotelbooking.cozyheaven.model.Review;
 import com.hotelbooking.cozyheaven.service.BookingService;
 import com.hotelbooking.cozyheaven.service.PaymentService;
-
-import io.jsonwebtoken.lang.Collections;
 
 @RestController
 @RequestMapping("/api/payment")

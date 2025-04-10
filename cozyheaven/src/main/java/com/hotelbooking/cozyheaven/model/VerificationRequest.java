@@ -1,5 +1,7 @@
 package com.hotelbooking.cozyheaven.model;
 
+import com.hotelbooking.cozyheaven.enums.ApprovalStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -28,10 +30,6 @@ public class VerificationRequest {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private ApprovalStatus approval_status;
-
-	public enum ApprovalStatus {
-		PENDING, APPROVED, REJECTED
-	}
 	
 	@ManyToOne
 	private Admin admin;

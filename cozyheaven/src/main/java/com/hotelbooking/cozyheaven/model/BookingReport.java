@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class BookingHasReport {
+public class BookingReport {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

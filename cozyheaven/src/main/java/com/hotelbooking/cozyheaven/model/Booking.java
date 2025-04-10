@@ -3,6 +3,8 @@ package com.hotelbooking.cozyheaven.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.hotelbooking.cozyheaven.enums.BookingStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -42,13 +44,6 @@ public class Booking {
 
 	@ManyToOne
 	private Room room;
-
-
-	// ENUM
-	public enum BookingStatus {
-		CONFIRMED, ON_PROCESS, CANCELLED
-
-	}
 
 	public int getId() {
 		return id;

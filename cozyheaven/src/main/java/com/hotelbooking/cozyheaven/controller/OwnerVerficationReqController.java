@@ -9,31 +9,31 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
 import com.hotelbooking.cozyheaven.model.HotelOwner;
-import com.hotelbooking.cozyheaven.model.HotelOwnerHasVerficationRequest;
+import com.hotelbooking.cozyheaven.model.OwnerVerificationReq;
 import com.hotelbooking.cozyheaven.model.VerificationRequest;
-import com.hotelbooking.cozyheaven.service.HotelOwnerHasVerficationRequestService;
+import com.hotelbooking.cozyheaven.service.OwnerVerficationReqService;
 import com.hotelbooking.cozyheaven.service.HotelOwnerService;
 import com.hotelbooking.cozyheaven.service.VerificationRequestService;
 
 @RestController
 @RequestMapping("/api/hotelowner_has_verificationrequest")
-public class HotelOwnerHasVerficationRequestController {
+public class OwnerVerficationReqController {
 	
 	@Autowired
-	private HotelOwnerHasVerficationRequestService hotelOwnerHasVerficationRequestService;
+	private OwnerVerficationReqService ownerVerficationReqService;
 	@Autowired
 	private HotelOwnerService hotelOwnerService;
 	@Autowired
 	private VerificationRequestService verificationRequestService;
 	
-	@PostMapping("/assign/{rID}/{vID}")
-	public  HotelOwnerHasVerficationRequest assignRequest(@PathVariable int rID,@PathVariable int vID,@RequestBody HotelOwnerHasVerficationRequest assign) throws InvalidIDException {
+	@PostMapping("/assign/{ownerID}/{verificationID}")
+	public  OwnerVerificationReq assignRequest(@PathVariable int ownerID,@PathVariable int verificationID,@RequestBody OwnerVerificationReq assign) throws InvalidIDException {
 		
-		HotelOwner owner= hotelOwnerService.getOwnerByID(rID);
-		VerificationRequest request=verificationRequestService.findByID(vID);
+		HotelOwner owner= hotelOwnerService.getOwnerByID(ownerID);
+		VerificationRequest request=verificationRequestService.findByID(verificationID);
 		assign.setHotelOwner(owner);
 		assign.setVerificationRequest(request);
-		return hotelOwnerHasVerficationRequestService.assignRequest(assign);
+		return ownerVerficationReqService.assignRequest(assign);
 		
 		
 		

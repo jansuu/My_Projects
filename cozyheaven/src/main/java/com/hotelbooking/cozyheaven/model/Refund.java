@@ -1,6 +1,9 @@
 package com.hotelbooking.cozyheaven.model;
 
 import java.time.LocalDateTime;
+
+import com.hotelbooking.cozyheaven.enums.RefundStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -33,13 +36,6 @@ public class Refund {
     // relationship
     @ManyToOne
     private CancellationRequest cancellationRequest;
-
-
-    // Enum 
-    public enum RefundStatus {
-        INITIATED, SUCCESS, FAILED
-    }
-
 
 	public int getId() {
 		return id;

@@ -2,6 +2,9 @@ package com.hotelbooking.cozyheaven.model;
 
 import java.time.LocalDateTime;
 
+import com.hotelbooking.cozyheaven.enums.PaymentMethod;
+import com.hotelbooking.cozyheaven.enums.PaymentStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -37,16 +40,6 @@ public class Payment {
 	@ManyToOne
 	private Booking booking;
 
-	// ENUM
-	public enum PaymentMethod {
-		UPI, CREDIT, DEBIT
-
-	}
-
-	public enum PaymentStatus {
-		COMPLETED, PENDING, CANCELLED
-
-	}
 
 	public int getId() {
 		return id;

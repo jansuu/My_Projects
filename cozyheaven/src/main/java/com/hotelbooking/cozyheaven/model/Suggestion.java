@@ -1,5 +1,7 @@
 package com.hotelbooking.cozyheaven.model;
 
+import com.hotelbooking.cozyheaven.enums.SuggestionStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -19,11 +21,6 @@ public class Suggestion {
 	private String content;
 	@Enumerated(EnumType.STRING)
 	private SuggestionStatus suggestionStatus;
-
-	public enum SuggestionStatus {
-		PENDING, REVIEWED, IMPLEMENTED, REJECTED
-
-	}
 	
 	@ManyToOne
 	private Review review;

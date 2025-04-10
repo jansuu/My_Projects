@@ -1,5 +1,8 @@
 package com.hotelbooking.cozyheaven.model;
 
+import com.hotelbooking.cozyheaven.enums.RoomAvailabilityStatus;
+import com.hotelbooking.cozyheaven.enums.RoomType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -38,15 +41,6 @@ public class Room {
 	@ManyToOne
 	private Hotel hotel;
 
-	// ENUM
-	public enum RoomAvailabilityStatus {
-		AVAILABLE, NOT_AVAILABLE
-
-	}
-
-	public enum RoomType {
-		SINGLE, DOUBLE, SUITE, DELUXE
-	}
 
 	public int getId() {
 		return id;

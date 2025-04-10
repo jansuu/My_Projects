@@ -6,9 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hotelbooking.cozyheaven.model.Report.RoomType;
+import com.hotelbooking.cozyheaven.enums.RoomType;
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
-import com.hotelbooking.cozyheaven.model.Customer;
 import com.hotelbooking.cozyheaven.model.Room;
 import com.hotelbooking.cozyheaven.repository.RoomRepository;
 

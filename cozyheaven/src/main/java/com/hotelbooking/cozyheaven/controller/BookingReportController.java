@@ -5,14 +5,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hotelbooking.cozyheaven.service.BookingHasReportService;
+import com.hotelbooking.cozyheaven.service.BookingReportService;
 
 @RestController
 @RequestMapping("/api/booking_has_report")
-public class BookingHasReportController {
+public class BookingReportController {
 	
 	@Autowired
-	private BookingHasReportService  bookingHasReportService;
+	private BookingReportService  bookingHasReportService;
 	
 	
 

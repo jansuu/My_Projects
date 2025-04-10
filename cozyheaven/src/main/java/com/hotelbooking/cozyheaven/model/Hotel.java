@@ -2,6 +2,11 @@ package com.hotelbooking.cozyheaven.model;
 
 import java.time.LocalDateTime;
 
+import com.hotelbooking.cozyheaven.enums.DeletionRequest;
+import com.hotelbooking.cozyheaven.enums.HotelAvailability;
+import com.hotelbooking.cozyheaven.enums.HotelStatus;
+import com.hotelbooking.cozyheaven.enums.HotelType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -54,11 +59,11 @@ public class Hotel {
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private Status status;
+	private HotelStatus status;
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private Availability isAvailable;
+	private HotelAvailability isAvailable;
 
 	@Column(nullable = false)
 	private String commonAmenities;
@@ -86,23 +91,8 @@ public class Hotel {
 	@ManyToOne
 	private HotelOwner hotelOwner;
 
-	// Enum
-	public enum HotelType {
-		LUXURY, BUDGET, HOSTEL, VILLA
-	}
-
-	public enum Status {
-		PENDING, APPROVED, REJECTED
-	}
-
-	public enum Availability {
-		YES, NO
-	}
-
-	public enum DeletionRequest {
-		Yes,No
-	}
 	
+
 	
 
 	public HotelOwner getHotelOwner() {
@@ -127,14 +117,6 @@ public class Hotel {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public HotelType getType() {
-		return type;
-	}
-
-	public void setType(HotelType type) {
-		this.type = type;
 	}
 
 	public String getDescription() {
@@ -209,22 +191,6 @@ public class Hotel {
 		this.imageUrls = imageUrls;
 	}
 
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
-	public Availability getIsAvailable() {
-		return isAvailable;
-	}
-
-	public void setIsAvailable(Availability isAvailable) {
-		this.isAvailable = isAvailable;
-	}
-
 	public String getCommonAmenities() {
 		return commonAmenities;
 	}
@@ -280,5 +246,30 @@ public class Hotel {
 	public void setDeletionRequested(DeletionRequest deletionRequested) {
 		this.deletionRequested = deletionRequested;
 	}
+
+	public HotelType getType() {
+		return type;
+	}
+
+	public void setType(HotelType type) {
+		this.type = type;
+	}
+
+	public HotelStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(HotelStatus status) {
+		this.status = status;
+	}
+
+	public HotelAvailability getIsAvailable() {
+		return isAvailable;
+	}
+
+	public void setIsAvailable(HotelAvailability isAvailable) {
+		this.isAvailable = isAvailable;
+	}
+	
 
 }

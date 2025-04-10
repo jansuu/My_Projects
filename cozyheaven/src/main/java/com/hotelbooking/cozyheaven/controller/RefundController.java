@@ -24,9 +24,9 @@ public class RefundController {
 	private CancellationRequestService cancellationRequestService;
 	
 	@PostMapping("/proceed/{cancellationID}")
-    public Refund postRefund(@PathVariable int cncellationID,@RequestBody Refund refund) throws InvalidIDException {
+    public Refund postRefund(@PathVariable int cancellationID,@RequestBody Refund refund) throws InvalidIDException {
 		
-		CancellationRequest request=  cancellationRequestService.findByID(cncellationID);
+		CancellationRequest request=  cancellationRequestService.findByID(cancellationID);
 		refund.setCancellationRequest(request);
 		return refundService.postRefund(refund);
 		

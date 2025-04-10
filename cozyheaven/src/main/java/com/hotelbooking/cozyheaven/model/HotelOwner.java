@@ -2,6 +2,9 @@ package com.hotelbooking.cozyheaven.model;
 
 import java.time.LocalDateTime;
 
+import com.hotelbooking.cozyheaven.enums.GovernmentIDType;
+import com.hotelbooking.cozyheaven.enums.IsVerified;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -51,14 +54,7 @@ public class HotelOwner {
 	@Column(nullable = false)
 	private LocalDateTime createdAt;
 
-	// Enums
-	public enum GovernmentIDType {
-		AadharCard, PANCard, VoterID, Passport, DrivingLicence
-	}
 
-	public enum IsVerified {
-		Verified, Pending, NotVerified
-	}
 
 	public int getId() {
 		return id;
