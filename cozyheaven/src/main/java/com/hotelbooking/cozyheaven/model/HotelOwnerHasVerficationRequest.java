@@ -18,4 +18,30 @@ public class HotelOwnerHasVerficationRequest {
 	@ManyToOne
 	private HotelOwner hotelOwner;
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public VerificationRequest getVerificationRequest() {
+		return verificationRequest;
+	}
+
+	public void setVerificationRequest(VerificationRequest verificationRequest) {
+		this.verificationRequest = verificationRequest;
+	}
+
+	public HotelOwner getHotelOwner() {
+		return hotelOwner;
+	}
+
+	public void setHotelOwner(HotelOwner hotelOwner) {
+		this.hotelOwner = hotelOwner;
+	}
+	
+	
+
 }

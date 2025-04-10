@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
+import com.hotelbooking.cozyheaven.model.Booking;
 import com.hotelbooking.cozyheaven.model.CancellationRequest;
 import com.hotelbooking.cozyheaven.model.CancellationRequest.Status;
-import com.hotelbooking.cozyheaven.model.Refund;
+import com.hotelbooking.cozyheaven.service.BookingService;
 import com.hotelbooking.cozyheaven.service.CancellationRequestService;
 
 @RestController
@@ -22,9 +23,13 @@ import com.hotelbooking.cozyheaven.service.CancellationRequestService;
 public class CancellationRequestController {
 	@Autowired
 	private CancellationRequestService cancellationRequestService;
+	@Autowired
+	private BookingService bookingService;
 	
-	@PostMapping("/add")
-	public CancellationRequest cancellBooking(@RequestBody CancellationRequest cancellationRequest) {
+	@PostMapping("/add/{bookingID}")
+	public CancellationRequest cancellBooking(@PathVariable int bookingID,@RequestBody CancellationRequest cancellationRequest) throws InvalidIDException {
+		Booking booking=bookingService.getBookingById(bookingID);
+		cancellationRequest.setBooking(booking);
 		return cancellationRequestService.cancellBooking(cancellationRequest);
 		
 	}

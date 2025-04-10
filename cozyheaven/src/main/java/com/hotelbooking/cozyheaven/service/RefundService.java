@@ -3,6 +3,7 @@ package com.hotelbooking.cozyheaven.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hotelbooking.cozyheaven.model.Refund;
 import com.hotelbooking.cozyheaven.repository.RefundRepository;
 
 @Service
@@ -10,5 +11,10 @@ public class RefundService
 {
 	@Autowired
 	private RefundRepository refundRepository;
+
+	public Refund postRefund(Refund refund) {
+		
+		return refundRepository.save(refund);
+	}
 
 }
