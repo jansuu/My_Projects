@@ -31,16 +31,6 @@ public class VerificationRequest {
 	@Column(nullable = false)
 	private ApprovalStatus approval_status;
 	
-	@ManyToOne
-	private Admin admin;
-
-	public Admin getAdmin() {
-		return admin;
-	}
-
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
 
 	public int getId() {
 		return id;
