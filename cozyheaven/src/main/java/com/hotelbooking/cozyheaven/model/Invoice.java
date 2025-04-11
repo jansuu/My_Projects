@@ -19,6 +19,8 @@ public class Invoice {
 	
 	@ManyToOne
 	private Booking booking;
+	
+	// Checking Invoice whether is added
 
 	public Booking getBooking() {
 		return booking;
