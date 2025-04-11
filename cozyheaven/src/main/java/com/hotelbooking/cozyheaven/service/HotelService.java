@@ -33,6 +33,13 @@ public class HotelService
          return optional.get();
 	}
 
+	public Hotel getHotelById(int hotelId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
 	
 
 }
