@@ -31,6 +31,8 @@ public class VerificationRequest {
 	@Column(nullable = false)
 	private ApprovalStatus approval_status;
 	
+	
+	// Admin Relationship Removed
 
 	public int getId() {
 		return id;
