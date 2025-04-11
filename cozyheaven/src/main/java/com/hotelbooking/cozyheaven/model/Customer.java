@@ -13,7 +13,7 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+	// customer module added
 	@Column(nullable = false)
 	private String name;
 
