@@ -19,9 +19,6 @@ public class Invoice {
 	
 	@ManyToOne
 	private Booking booking;
-	
-	
-	// Sample for checking purpose
 
 	public Booking getBooking() {
 		return booking;
