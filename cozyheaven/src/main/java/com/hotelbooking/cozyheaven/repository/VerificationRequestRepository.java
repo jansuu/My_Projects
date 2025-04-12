@@ -15,4 +15,6 @@ public interface VerificationRequestRepository extends JpaRepository<Verificatio
 
 	List<VerificationRequest> findByStatus(ApprovalStatus status);
 
+	List<VerificationRequest> findByHotelOwner(HotelOwner owner);
+
 }
