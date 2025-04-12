@@ -22,50 +22,62 @@ public class VerificationRequestController {
 	  @Autowired
 	    private VerificationRequestService verificationRequestService;
 	  
-
-	    // ✅ Add a new verification request (linked with owner and hotel)
+		/*
+		 * The Hotel Owner can give a Verification request to the admin by means of
+		 * giving onwerId, hotelId and additionally hotelID is included because it shows
+		 * that this owner has this hotel and can be viewed by the admin
+		 */
 	    @PostMapping("/add/{ownerId}/{hotelId}")
 	    public VerificationRequest addRequest(@PathVariable int ownerId,
 	                                          @PathVariable int hotelId,
 	                                          @RequestBody VerificationRequest request) throws InvalidIDException {
 	        return verificationRequestService.addVerificationRequest(ownerId, hotelId, request);
 	    }
-
-	    // ✅ Get a specific verification request by its ID
+    
+	    // This api helps to get a specific verification request by its ID
 	    @GetMapping("/get/{id}")
 	    public VerificationRequest getRequestById(@PathVariable int id) throws InvalidIDException {
 	        return verificationRequestService.getRequestById(id);
 	    }
 
-	    // ✅ Get all verification requests by owner and hotel IDs
+	    // It helps to get all verification requests by owner and hotel IDs like it shows the owner and hotel which the owner have
 	    @GetMapping("/getbyownerandhotel/{ownerId}/{hotelId}")
 	    public List<VerificationRequest> getRequestsByOwnerAndHotel(@PathVariable int ownerId,
 	                                                                @PathVariable int hotelId) throws InvalidIDException {
 	        return verificationRequestService.getRequestsByOwnerAndHotel(ownerId, hotelId);
 	    }
 
-	    // ✅ Accept a verification request (admin)
+	    // Basically the admin can see the list of requests so that he can easily verify and accept which one is the right thing!!
 	    @PutMapping("/accept/{id}")
 	    public VerificationRequest acceptRequest(@PathVariable int id) throws InvalidIDException {
 	        return verificationRequestService.acceptRequest(id);
 	    }
 
-	    // ✅ Cancel (reject) a verification request (admin)
+	    // Similar to the above that the admin can easily cancel the request which it doesn't meet the requirement 
 	    @PutMapping("/cancel/{id}")
 	    public VerificationRequest cancelRequest(@PathVariable int id) throws InvalidIDException {
 	        return verificationRequestService.cancelRequest(id);
 	    }
 
-	    // ✅ View all pending verification requests
+	    // First of all the admin can see these kind of verification list and by seeing the status the admin an easily validate 
 	    @GetMapping("/pending")
 	    public List<VerificationRequest> getPendingRequests() {
 	        return verificationRequestService.getPendingRequests();
 	    }
-
-	    // ✅ Update an existing verification request
-	    @PutMapping("/update/{id}")
-	    public VerificationRequest updateRequest(@PathVariable int id,
-	                                             @RequestBody VerificationRequest request) throws InvalidIDException {
-	        return verificationRequestService.updateRequestDetails(id, request);
+	    
+	    // The hotel owner needs to change some of the info for the verification request then the onwer can be easily change by means of this api 
+	    @PutMapping("/update/by-owner/{ownerId}")
+	    public VerificationRequest updateByOwner(@PathVariable int ownerId,
+	                                             @RequestBody VerificationRequest updatedRequest) throws InvalidIDException {
+	        return verificationRequestService.updateRequestByOwner(ownerId, updatedRequest);
 	    }
+
+	    
+	    // finally the hotel owner can see his status of verification request by his owner portel viewing 
+	    @GetMapping("/status/{ownerId}")
+	    public List<VerificationRequest> getRequestsByOwner(@PathVariable int ownerId) throws InvalidIDException {
+	        return verificationRequestService.getRequestsByOwnerId(ownerId);
+	    }
+	    
+	    
 }

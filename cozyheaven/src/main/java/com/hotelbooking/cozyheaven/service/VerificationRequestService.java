@@ -82,5 +82,23 @@ public class VerificationRequestService {
 
 		return verificationRequestRepository.save(request);
 	}
+	
+	public List<VerificationRequest> getRequestsByOwnerId(int ownerId) throws InvalidIDException {
+	    HotelOwner owner = hotelOwnerService.getOwnerByID(ownerId);
+	    return verificationRequestRepository.findByHotelOwner(owner);
+	}
+	
+	public VerificationRequest updateRequestByOwner(int ownerId, VerificationRequest updatedRequest) throws InvalidIDException {
+	    HotelOwner owner = hotelOwnerService.getOwnerByID(ownerId);
+	    List<VerificationRequest> requests = verificationRequestRepository.findByHotelOwner(owner);
+	    if (requests.isEmpty()) throw new InvalidIDException("No request found for this owner");
+	    VerificationRequest request = requests.get(0); 
+	    request.setLicensen_number(updatedRequest.getLicensen_number());
+	    request.setProperty_ownership_proof(updatedRequest.getProperty_ownership_proof());
+	    request.setStatus(ApprovalStatus.PENDING); 
+	    return verificationRequestRepository.save(request);
+	}
+	
+	
 
 }
