@@ -79,5 +79,5 @@ public class VerificationRequestController {
 	        return verificationRequestService.getRequestsByOwnerId(ownerId);
 	    }
 	    
-	    
+	    //need to check the verification api's in the postman
 }
