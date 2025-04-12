@@ -63,4 +63,17 @@ public class BookingService
 		return bookingRepository.findAll();
 	}
 
+	
+	// created By Dinesh
+	public List<Booking> getBookingByHotelID(int hotelid) {
+		
+		List<Booking> bookings = bookingRepository.findByRoomHotelId(hotelid);
+		return bookings;
+	}
+
+	public List<Booking> getBookingByOwner(int ownerid) {
+		
+		return bookingRepository.findByRoomHotelHotelOwnerId(ownerid);
+	}
+
 }

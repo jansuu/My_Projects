@@ -14,11 +14,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hotelbooking.cozyheaven.enums.DeletionRequest;
+import com.hotelbooking.cozyheaven.enums.HotelStatus;
+import com.hotelbooking.cozyheaven.enums.Status;
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
+import com.hotelbooking.cozyheaven.model.Booking;
 import com.hotelbooking.cozyheaven.model.Hotel;
 import com.hotelbooking.cozyheaven.model.HotelOwner;
+import com.hotelbooking.cozyheaven.model.Review;
+import com.hotelbooking.cozyheaven.service.BookingService;
 import com.hotelbooking.cozyheaven.service.HotelOwnerService;
 import com.hotelbooking.cozyheaven.service.HotelService;
+import com.hotelbooking.cozyheaven.service.ReviewService;
 
 @RestController
 @RequestMapping("/api/hotel")
@@ -27,76 +33,99 @@ public class HotelController {
 	private HotelService hotelService;
 	@Autowired
 	private HotelOwnerService hotelOwnerService;
-	
-	
+	@Autowired
+	private BookingService bookingService;
+	@Autowired
+	private ReviewService reviewService;
+
 	// Adding Hotel With Owner ID
-	
-	@PostMapping("/add/{hotelownerID}")
-	public Hotel addHotel(@PathVariable int hotelownerID,@RequestBody Hotel hotel) throws InvalidIDException {
-		
-		HotelOwner owner=hotelOwnerService.getOwnerByID(hotelownerID);
+
+	@PostMapping("/add/{hotelownerid}")
+	public Hotel addHotel(@PathVariable int hotelownerid, @RequestBody Hotel hotel) throws InvalidIDException {
+
+		HotelOwner owner = hotelOwnerService.getOwnerByID(hotelownerid);
 		hotel.setHotelOwner(owner);
 		return hotelService.addHotel(hotel);
-		
-	
-		
+
 	}
-	
-	//Get Hotels With Owner Id
-	
-	@GetMapping("/get/{hotelownerID}")
-	public List<Hotel> getHotelByOwnerID(@PathVariable int hotelownerID) throws InvalidIDException {
-		HotelOwner owner=hotelOwnerService.getOwnerByID(hotelownerID);
-		return hotelService.getHotelByOwnerID(hotelownerID);
-		
+
+	// Get Hotels With Owner Id
+
+	@GetMapping("/get/{hotelownerid}")
+	public List<Hotel> getHotelByOwnerID(@PathVariable int hotelownerid) throws InvalidIDException {
+		HotelOwner owner = hotelOwnerService.getOwnerByID(hotelownerid);
+		return hotelService.getHotelByOwnerID(hotelownerid);
+
 	}
-	
-	// Edit Hotel Details  -- need to confirm owning status
-	
-	@PutMapping("/update/{hotelID}/{hotelownerID}")
-	public Hotel updateHotel(@PathVariable int hotelID,@PathVariable int hotelownerID,@RequestBody Hotel hotel) throws InvalidIDException {
-		
-		HotelOwner owner=hotelOwnerService.getOwnerByID(hotelownerID);
-		   
-        Hotel hotelsFind=hotelService.findByHotelID(hotelID);
-        
-        System.out.println(hotelsFind.toString());
-		
+
+	// Edit Hotel Details -- need to confirm owning status
+
+	@PutMapping("/update/{hotelid}/{hotelownerid}")
+	public Hotel updateHotel(@PathVariable int hotelid, @PathVariable int hotelownerid, @RequestBody Hotel hotel)
+			throws InvalidIDException {
+
+		HotelOwner owner = hotelOwnerService.getOwnerByID(hotelownerid);
+
+		Hotel hotelsFind = hotelService.findByHotelID(hotelid);
+
+		System.out.println(hotelsFind.toString());
+
 		hotelsFind.setIsAvailable(hotel.getIsAvailable());
 		return hotelService.addHotel(hotelsFind);
-	
-		
+
 	}
-	
-	//Delete Request For Hotel
-   @DeleteMapping("deleterequest/{hotelID}/{hotelownerID}")
-   public Hotel deleteHotel(@PathVariable int hotelID,@PathVariable int hotelownerID,@RequestParam DeletionRequest status) throws InvalidIDException {
-		
-		HotelOwner owner=hotelOwnerService.getOwnerByID(hotelownerID);
-		   
-        Hotel hotel=hotelService.findByHotelID(hotelID);
-		
+
+	// Delete Request For Hotel
+	@DeleteMapping("deleterequest/{hotelid}/{hotelownerid}")
+	public Hotel deleteHotel(@PathVariable int hotelid, @PathVariable int hotelownerid,
+			@RequestParam DeletionRequest status) throws InvalidIDException {
+
+		HotelOwner owner = hotelOwnerService.getOwnerByID(hotelownerid);
+
+		Hotel hotel = hotelService.findByHotelID(hotelid);
+
 		hotel.setDeletionRequested(status);
 		return hotelService.addHotel(hotel);
-	
-		
+
 	}
-   
+
+	// To Get Bookings By Specific Hotel
+	@GetMapping("/bookingbyhotel/{hotelid}")
+	public List<Booking> getBookingByHotel(@PathVariable int hotelid) {
+		List<Booking> booking = bookingService.getBookingByHotelID(hotelid);
+		return booking;
+	}
+
+	// To Get Bookings By All Hotels Owned By Specific Owner
+	@GetMapping("/bookingbyowner/{ownerid}")
+	public List<Booking> getBookingByOwner(@PathVariable int ownerid) {
+
+		List<Booking> booking = bookingService.getBookingByOwner(ownerid);
+		return booking;
+
+	}
+
+	// To Get Reviews By Specific Hotels
+	@GetMapping("review/{hotelid}")
+	public List<Review> getReviewByHotel(@PathVariable int hotelid) {
+		return reviewService.getReviewByHotel(hotelid);
+	}
+
+	// To Reply For Review
+	@PutMapping("/review/response/{reviewid}")
+	public Review responseReview(@PathVariable int reviewid, @RequestBody Review response) throws InvalidIDException {
+
+		Review review = reviewService.getReviewById(reviewid);
+
+		review.setResponseText(response.getResponseText());
+		review.setResponseDate(response.getResponseDate());
+		return reviewService.submitReview(review);
+	}
+
+	// To Get Pending Requests Of Hotel Verification
+	@GetMapping("/pendingRequest")
+	public List<Hotel> pendingRequests() {
+		return hotelService.getPendingRequests();
+	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

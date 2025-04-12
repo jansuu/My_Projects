@@ -1,5 +1,6 @@
 package com.hotelbooking.cozyheaven.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class ReviewService {
 		return optional.get();
 	}
 
-	public Review getReviewsByHotel(int roomId) throws InvalidIDException 
+	public Review getReviewsByRoom(int roomId) throws InvalidIDException 
 	{
 		// TODO Auto-generated method stub
 		Optional<Review> optional = reviewRepository.findByBookingRoomId(roomId);
@@ -51,6 +52,12 @@ public class ReviewService {
 	public Review submitReview(Review review) {
 		// TODO Auto-generated method stub
 		return reviewRepository.save(review);
+	}
+
+	// created -dinesh
+	public List<Review> getReviewByHotel(int hotelid) {
+		
+		return reviewRepository.findByBookingRoomHotelId(hotelid);
 	}
 
 }
