@@ -18,52 +18,31 @@ import com.hotelbooking.cozyheaven.service.HotelOwnerService;
 public class HotelOwnerController {
 	@Autowired
 	private HotelOwnerService hotelOwnerService;
-	
-	// To Add Hotel Owner 
-	
+
+	// To Add Hotel Owner
+
 	@PostMapping("/add")
 	public HotelOwner addHotelOwner(@RequestBody HotelOwner hotelOwner) {
-		
+
 		return hotelOwnerService.addHotelOwner(hotelOwner);
-		
+
 	}
-	
-	//To Get Owner Details
-	
-	@GetMapping("/get/{id}")
-	public HotelOwner getOwnerByID(@PathVariable int id) throws InvalidIDException {
-		return hotelOwnerService.getOwnerByID(id);
+
+	// To Get Owner Details
+
+	@GetMapping("/get/{ownerid}")
+	public HotelOwner getOwnerByID(@PathVariable int ownerid) throws InvalidIDException {
+		return hotelOwnerService.getOwnerByID(ownerid);
 	}
-	
-	//To Update Owner Info
-	@PutMapping("/update/{id}")
-	public HotelOwner updateInfo(@PathVariable int id,@RequestBody HotelOwner hotelOwner) throws InvalidIDException {
-		HotelOwner owner=hotelOwnerService.getOwnerByID(id);
+
+	// To Update Owner Info
+	@PutMapping("/update/{ownerid}")
+	public HotelOwner updateInfo(@PathVariable int ownerid, @RequestBody HotelOwner hotelOwner)
+			throws InvalidIDException {
+		HotelOwner owner = hotelOwnerService.getOwnerByID(ownerid);
 		owner.setAddress(hotelOwner.getAddress());
 		return hotelOwnerService.addHotelOwner(owner);
-		
-		
+
 	}
-	
-	
-	
-	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

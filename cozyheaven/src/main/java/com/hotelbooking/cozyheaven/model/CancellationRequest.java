@@ -37,7 +37,6 @@ public class CancellationRequest {
 	private LocalDateTime processedAt;
 
 	@ManyToOne
-	
 	private Booking booking;
 
 	public int getId() {

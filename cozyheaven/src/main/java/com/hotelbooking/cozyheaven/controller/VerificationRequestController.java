@@ -21,6 +21,7 @@ public class VerificationRequestController {
 	
 	  @Autowired
 	    private VerificationRequestService verificationRequestService;
+	  
 
 	    // ✅ Add a new verification request (linked with owner and hotel)
 	    @PostMapping("/add/{ownerId}/{hotelId}")

@@ -42,7 +42,7 @@ public class ReviewController {
     // Get reviews for a specific hotel
     @GetMapping("/hotel/{hotelId}")
     public Review getReviewsByRoom(@PathVariable int RoomId) throws InvalidIDException {
-        return reviewService.getReviewsByHotel(RoomId);
+        return reviewService.getReviewsByRoom(RoomId);
     }
 
 //    // Get reviews by customer
