@@ -12,6 +12,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class HotelOwner {
@@ -53,8 +54,19 @@ public class HotelOwner {
 
 	@Column(nullable = false)
 	private LocalDateTime createdAt;
+	
+	@OneToOne
+	private User user;
 
 
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public int getId() {
 		return id;

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
 import com.hotelbooking.cozyheaven.model.HotelOwner;
+import com.hotelbooking.cozyheaven.model.User;
+import com.hotelbooking.cozyheaven.service.AuthService;
 import com.hotelbooking.cozyheaven.service.HotelOwnerService;
 
 @RestController
@@ -18,11 +20,15 @@ import com.hotelbooking.cozyheaven.service.HotelOwnerService;
 public class HotelOwnerController {
 	@Autowired
 	private HotelOwnerService hotelOwnerService;
+	@Autowired
+	private AuthService authService;
 
 	// To Add Hotel Owner
-	@PostMapping("/add")
-	public HotelOwner addHotelOwner(@RequestBody HotelOwner hotelOwner) {
-
+	@PostMapping("/add/{userid}")
+	public HotelOwner addHotelOwner(@RequestBody HotelOwner hotelOwner,@PathVariable int userid) throws InvalidIDException {
+		
+		User user=authService.getUserById(userid);
+		hotelOwner.setUser(user);
 		return hotelOwnerService.addHotelOwner(hotelOwner);
 
 	}

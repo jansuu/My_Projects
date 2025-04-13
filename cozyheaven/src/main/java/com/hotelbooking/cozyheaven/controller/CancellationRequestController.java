@@ -67,7 +67,7 @@ public class CancellationRequestController {
 	}
 
 	// To Accept Cancellation Request
-	@PutMapping("accept/{cancellationID}")
+	@PutMapping("/accept/{cancellationID}")
 	public CancellationRequest acceptCancellation(@PathVariable int cancellationID) throws InvalidIDException {
 		CancellationRequest request = cancellationRequestService.findByID(cancellationID);
 		request.setStatus(Status.APPROVED);
@@ -75,7 +75,7 @@ public class CancellationRequestController {
 	}
 
 	// To Reject Cancellation Request
-	@PutMapping("reject/{cancellationID}")
+	@PutMapping("/reject/{cancellationID}")
 	public CancellationRequest rejectCancellation(@PathVariable int cancellationID) throws InvalidIDException {
 		CancellationRequest request = cancellationRequestService.findByID(cancellationID);
 		request.setStatus(Status.REJECTED);

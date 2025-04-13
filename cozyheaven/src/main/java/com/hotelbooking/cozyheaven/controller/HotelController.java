@@ -144,14 +144,14 @@ public class HotelController {
 	}
 
 	// To Get Reviews By Specific Hotels
-	@GetMapping("review/{hotelid}")
+	@GetMapping("/review/{hotelid}")
 	public List<Review> getReviewByHotel(@PathVariable int hotelid) throws InvalidIDException {
 		Hotel hotelFind = hotelService.findByHotelID(hotelid);
 		return reviewService.getReviewByHotel(hotelid);
 	}
 	
 	//To Get All Review By Owner
-	@GetMapping("review/{ownerid}")
+	@GetMapping("/review/{ownerid}")
 	public List<Review> getReviewByOwner(@PathVariable int ownerid) throws InvalidIDException {
 		HotelOwner owner=hotelOwnerService.getOwnerByID(ownerid);
 		return reviewService.getReviewByOwner(ownerid);
