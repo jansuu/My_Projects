@@ -11,10 +11,11 @@ import com.hotelbooking.cozyheaven.model.VerificationRequest;
 
 public interface VerificationRequestRepository extends JpaRepository<VerificationRequest, Integer> {
 
-	List<VerificationRequest> findByHotelOwnerAndHotel(HotelOwner owner, Hotel hotel);
 
 	List<VerificationRequest> findByStatus(ApprovalStatus status);
 
-	List<VerificationRequest> findByHotelOwner(HotelOwner owner);
+	VerificationRequest findByHotelOwnerId(int ownerid);
+
+	VerificationRequest findByHotelId(int hotelid);
 
 }

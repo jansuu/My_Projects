@@ -5,6 +5,7 @@ import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.hotelbooking.cozyheaven.exception.InvalidHotelNameException;
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
 import com.hotelbooking.cozyheaven.exception.InvalidStatusException;
 import com.hotelbooking.cozyheaven.exception.InvalidUsernameException;
@@ -21,6 +22,10 @@ public class GlobalException {
 	}
 	@ExceptionHandler(InvalidStatusException.class)
 	public ErrorResponse InvalidStatusExceptionHandler(InvalidStatusException e) {
+		return ErrorResponse.create(e, HttpStatusCode.valueOf(400), e.getMessage());
+	}
+	@ExceptionHandler(InvalidHotelNameException.class)
+	public ErrorResponse InvalidHotelNameExceptionHandler(InvalidHotelNameException e) {
 		return ErrorResponse.create(e, HttpStatusCode.valueOf(400), e.getMessage());
 	}
 

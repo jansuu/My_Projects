@@ -25,6 +25,7 @@ public class RefundController {
 	@Autowired
 	private CancellationRequestService cancellationRequestService;
 	
+	//To Proceed Refund (Only When Cancellation Request Approved)
 	@PostMapping("/proceed/{cancellationID}")
     public Refund postRefund(@PathVariable int cancellationID,@RequestBody Refund refund) throws InvalidIDException, InvalidStatusException {
 		

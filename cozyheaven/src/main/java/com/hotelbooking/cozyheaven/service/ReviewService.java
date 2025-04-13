@@ -55,9 +55,15 @@ public class ReviewService {
 	}
 
 	// created -dinesh
+	
 	public List<Review> getReviewByHotel(int hotelid) {
 		
 		return reviewRepository.findByBookingRoomHotelId(hotelid);
+	}
+
+	public List<Review> getReviewByOwner(int ownerid) {
+		
+		return reviewRepository.findByBookingRoomHotelHotelOwnerId(ownerid);
 	}
 
 }

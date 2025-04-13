@@ -7,13 +7,13 @@ import com.hotelbooking.cozyheaven.model.Refund;
 import com.hotelbooking.cozyheaven.repository.RefundRepository;
 
 @Service
-public class RefundService 
-{
+public class RefundService {
 	@Autowired
 	private RefundRepository refundRepository;
 
+	// To Save Refund In DB
 	public Refund postRefund(Refund refund) {
-		
+
 		return refundRepository.save(refund);
 	}
 

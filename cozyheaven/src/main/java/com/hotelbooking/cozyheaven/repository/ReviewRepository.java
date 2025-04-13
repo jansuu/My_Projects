@@ -15,5 +15,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer>{
 	
 	// created - dinesh 
 	List<Review> findByBookingRoomHotelId(int hotelid);
+	
+	List<Review> findByBookingRoomHotelHotelOwnerId(int ownerid);
 
 }
