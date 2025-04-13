@@ -19,6 +19,6 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
 
 	List<Hotel> findByName(String name);
 	
-	List<Hotel> findByDeletionRequest(DeletionRequest request);
+	List<Hotel> findByDeletionRequested(DeletionRequest request);
 
 }
