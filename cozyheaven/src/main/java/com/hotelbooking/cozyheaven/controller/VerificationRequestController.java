@@ -87,6 +87,7 @@ public class VerificationRequestController {
 	public List<VerificationRequest> getAll() {
 		return verificationRequestService.getAll();
 	}
+	
 
 	
 }
