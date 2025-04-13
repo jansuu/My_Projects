@@ -63,7 +63,7 @@ public class HotelService {
 	// To Get Deletion Requested Hotel
 	public List<Hotel> getDeletionRequests() {
 
-		return hotelRepository.findByDeletionRequest(DeletionRequest.Yes);
+		return hotelRepository.findByDeletionRequested(DeletionRequest.Yes);
 	}
 
 }
