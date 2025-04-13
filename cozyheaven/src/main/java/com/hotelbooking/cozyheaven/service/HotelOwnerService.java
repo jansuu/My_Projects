@@ -10,41 +10,23 @@ import com.hotelbooking.cozyheaven.model.HotelOwner;
 import com.hotelbooking.cozyheaven.repository.HotelOwnerRepository;
 
 @Service
-public class HotelOwnerService 
-{
+public class HotelOwnerService {
 	@Autowired
 	private HotelOwnerRepository hotelOwnerRepository;
-	
-	
-	// Saving HotelOwner In DB
 
+	// Saving HotelOwner In DB
 	public HotelOwner addHotelOwner(HotelOwner hotelOwner) {
-		
+
 		return hotelOwnerRepository.save(hotelOwner);
 	}
 
-
+	// To Get Owner By ID
 	public HotelOwner getOwnerByID(int id) throws InvalidIDException {
 
-         Optional<HotelOwner> optional = hotelOwnerRepository.findById(id);
-         if(optional==null)
-        	 throw new InvalidIDException("Hotel Owner ID Does Not Exist!");
-         return optional.get();
+		Optional<HotelOwner> optional = hotelOwnerRepository.findById(id);
+		if (optional == null)
+			throw new InvalidIDException("Hotel Owner ID Does Not Exist!");
+		return optional.get();
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

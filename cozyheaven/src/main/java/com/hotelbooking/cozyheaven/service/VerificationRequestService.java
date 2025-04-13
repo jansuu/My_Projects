@@ -1,5 +1,6 @@
 package com.hotelbooking.cozyheaven.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hotelbooking.cozyheaven.enums.ApprovalStatus;
+import com.hotelbooking.cozyheaven.enums.HotelAvailability;
+import com.hotelbooking.cozyheaven.enums.HotelStatus;
+import com.hotelbooking.cozyheaven.enums.IsVerified;
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
 import com.hotelbooking.cozyheaven.model.Hotel;
 import com.hotelbooking.cozyheaven.model.HotelOwner;
@@ -24,15 +28,69 @@ public class VerificationRequestService {
 	@Autowired
 	private HotelService hotelService;
 
-	// Add new verification request
-	public VerificationRequest addVerificationRequest(int ownerId, int hotelId, VerificationRequest request)
+	//1) add request for owner
+	public VerificationRequest addVerificationRequestOwner(int ownerId, VerificationRequest request)
 			throws InvalidIDException {
 		HotelOwner owner = hotelOwnerService.getOwnerByID(ownerId);
-		Hotel hotel = hotelService.getHotelById(hotelId);
+		request.setHotelOwner(owner);
+		return verificationRequestRepository.save(request);
+	}
+    //2)To Approve Owner
+	public VerificationRequest acceptRequestOwner(int verificationid) throws InvalidIDException {
+		VerificationRequest request = getRequestById(verificationid);
+		HotelOwner owner = hotelOwnerService.getOwnerByID(request.getHotelOwner().getId());
+		owner.setIsVerified(IsVerified.Verified);
+		request.setStatus(ApprovalStatus.APPROVED);
+		return request;
+
+	}
+    //3)To Reject Owner
+	public VerificationRequest rejectRequestOwner(int verificationid) throws InvalidIDException {
+		VerificationRequest request = getRequestById(verificationid);
+		HotelOwner owner = hotelOwnerService.getOwnerByID(request.getHotelOwner().getId());
+		owner.setIsVerified(IsVerified.NotVerified);
+		request.setStatus(ApprovalStatus.CANCELLED);
+		return request;
+
+	}
+
+	// 4)Add new verification request For Hotel
+	public VerificationRequest addVerificationRequest(int hotelId, VerificationRequest request)
+			throws InvalidIDException {
+		Hotel hotel = hotelService.findByHotelID(hotelId);
+		HotelOwner owner = hotelOwnerService.getOwnerByID(hotel.getHotelOwner().getId());
 
 		request.setHotelOwner(owner);
 		request.setHotel(hotel);
 		request.setStatus(ApprovalStatus.PENDING);
+
+		return verificationRequestRepository.save(request);
+	}
+
+	// 5)Approve Hotel request
+	public VerificationRequest acceptRequest(int verificationid) throws InvalidIDException {
+		VerificationRequest request = getRequestById(verificationid);
+		HotelOwner owner = hotelOwnerService.getOwnerByID(request.getHotelOwner().getId());
+		if (owner.getIsVerified() == IsVerified.Verified) {
+			request.setStatus(ApprovalStatus.APPROVED);
+			request.getHotel().setStatus(HotelStatus.APPROVED);
+			request.getHotel().setIsAvailable(HotelAvailability.YES);
+			request.getHotel().setApprovedAt(LocalDateTime.now());
+		} else
+			throw new InvalidIDException("Hotel Owner Not Verified");
+		return verificationRequestRepository.save(request);
+	}
+
+	// 6)Cancel Hotel request
+	public VerificationRequest cancelRequest(int verificationid) throws InvalidIDException {
+		VerificationRequest request = getRequestById(verificationid);
+		HotelOwner owner = hotelOwnerService.getOwnerByID(request.getHotelOwner().getId());
+		if (owner.getIsVerified() == IsVerified.Verified) {
+			request.setStatus(ApprovalStatus.CANCELLED);
+			request.getHotel().setStatus(HotelStatus.REJECTED);
+			request.getHotel().setIsAvailable(HotelAvailability.NO);
+		} else
+			throw new InvalidIDException("Hotel Owner Not Verified");
 
 		return verificationRequestRepository.save(request);
 	}
@@ -46,24 +104,9 @@ public class VerificationRequestService {
 	}
 
 	// Get all requests by ownerId and hotelId
-	public List<VerificationRequest> getRequestsByOwnerAndHotel(int ownerId, int hotelId) throws InvalidIDException {
-		HotelOwner owner = hotelOwnerService.getOwnerByID(ownerId);
-		Hotel hotel = hotelService.getHotelById(hotelId);
-		return verificationRequestRepository.findByHotelOwnerAndHotel(owner, hotel);
-	}
-
-	// Accept request
-	public VerificationRequest acceptRequest(int id) throws InvalidIDException {
-		VerificationRequest request = getRequestById(id);
-		request.setStatus(ApprovalStatus.APPROVED);
-		return verificationRequestRepository.save(request);
-	}
-
-	// Cancel request
-	public VerificationRequest cancelRequest(int id) throws InvalidIDException {
-		VerificationRequest request = getRequestById(id);
-		request.setStatus(ApprovalStatus.CANCELLED);
-		return verificationRequestRepository.save(request);
+	public VerificationRequest getRequestByHotel( int hotelId) throws InvalidIDException {
+		Hotel hotel = hotelService.findByHotelID(hotelId);
+		return verificationRequestRepository.findByHotelId(hotel.getId());
 	}
 
 	// Show all pending requests
@@ -71,34 +114,17 @@ public class VerificationRequestService {
 		return verificationRequestRepository.findByStatus(ApprovalStatus.PENDING);
 	}
 
-	// Update request message, document, and status
-	public VerificationRequest updateRequestDetails(int id, VerificationRequest updatedRequest)
-			throws InvalidIDException {
-		VerificationRequest request = getRequestById(id);
+	
 
-		request.setMessage(updatedRequest.getMessage());
-		request.setDocument(updatedRequest.getDocument());
-		request.setStatus(updatedRequest.getStatus());
+	public VerificationRequest getRequestsByOwnerId(int ownerId) throws InvalidIDException {
+		HotelOwner owner = hotelOwnerService.getOwnerByID(ownerId);
+		return verificationRequestRepository.findByHotelOwnerId(owner.getId());
+	}
+	public List<VerificationRequest> getAll() {
+		
+		return verificationRequestRepository.findAll();
+	}
 
-		return verificationRequestRepository.save(request);
-	}
-	
-	public List<VerificationRequest> getRequestsByOwnerId(int ownerId) throws InvalidIDException {
-	    HotelOwner owner = hotelOwnerService.getOwnerByID(ownerId);
-	    return verificationRequestRepository.findByHotelOwner(owner);
-	}
-	
-	public VerificationRequest updateRequestByOwner(int ownerId, VerificationRequest updatedRequest) throws InvalidIDException {
-	    HotelOwner owner = hotelOwnerService.getOwnerByID(ownerId);
-	    List<VerificationRequest> requests = verificationRequestRepository.findByHotelOwner(owner);
-	    if (requests.isEmpty()) throw new InvalidIDException("No request found for this owner");
-	    VerificationRequest request = requests.get(0); 
-	    request.setLicensen_number(updatedRequest.getLicensen_number());
-	    request.setProperty_ownership_proof(updatedRequest.getProperty_ownership_proof());
-	    request.setStatus(ApprovalStatus.PENDING); 
-	    return verificationRequestRepository.save(request);
-	}
-	
 	
 
 }

@@ -18,66 +18,75 @@ import com.hotelbooking.cozyheaven.service.VerificationRequestService;
 @RestController
 @RequestMapping("/api/verificationrequest")
 public class VerificationRequestController {
+
+	@Autowired
+	private VerificationRequestService verificationRequestService;
+
+	// 1)To Verify request Hotel Owner
+	@PostMapping("/add/{ownerId}")
+	public VerificationRequest addRequestOwner(@PathVariable int ownerId, @RequestBody VerificationRequest request)
+			throws InvalidIDException {
+		return verificationRequestService.addVerificationRequestOwner(ownerId, request);
+	}
+
+	// 2)To Approve Hotel Owner Verification
+	@PutMapping("/approveOwner/{verificationid}")
+	public VerificationRequest acceptRequestOwner(@PathVariable int verificationid) throws InvalidIDException {
+		return verificationRequestService.acceptRequestOwner(verificationid);
+	}
+
+	// 3)To Reject Hotel Owner Verification
+	@PutMapping("/rejectOwner/{verificationid}")
+	public VerificationRequest rejectRequestOwner(@PathVariable int verificationid) throws InvalidIDException {
+		return verificationRequestService.rejectRequestOwner(verificationid);
+	}
+
+	// 4) To Request Verification For Hotel
+	@PostMapping("/add/{hotelId}")
+	public VerificationRequest addRequest(@PathVariable int hotelId, @RequestBody VerificationRequest request)
+			throws InvalidIDException {
+		return verificationRequestService.addVerificationRequest(hotelId, request);
+	}
+
+	// 5)To Approve Hotel Verification
+	@PutMapping("/approveHotel/{verificationid}")
+	public VerificationRequest acceptRequest(@PathVariable int verificationid) throws InvalidIDException {
+		return verificationRequestService.acceptRequest(verificationid);
+	}
+
+	// 6)To Reject Hotel Verification
+	@PutMapping("/rejectHotel/{verificationid}")
+	public VerificationRequest cancelRequest(@PathVariable int verificationid) throws InvalidIDException {
+		return verificationRequestService.cancelRequest(verificationid);
+	}
+
+	// This api helps to get a specific verification request by its ID
+	@GetMapping("/get/{id}")
+	public VerificationRequest getRequestById(@PathVariable int id) throws InvalidIDException {
+		return verificationRequestService.getRequestById(id);
+	}
+
 	
-	  @Autowired
-	    private VerificationRequestService verificationRequestService;
-	  
-		/*
-		 * The Hotel Owner can give a Verification request to the admin by means of
-		 * giving onwerId, hotelId and additionally hotelID is included because it shows
-		 * that this owner has this hotel and can be viewed by the admin
-		 */
-	    @PostMapping("/add/{ownerId}/{hotelId}")
-	    public VerificationRequest addRequest(@PathVariable int ownerId,
-	                                          @PathVariable int hotelId,
-	                                          @RequestBody VerificationRequest request) throws InvalidIDException {
-	        return verificationRequestService.addVerificationRequest(ownerId, hotelId, request);
-	    }
-    
-	    // This api helps to get a specific verification request by its ID
-	    @GetMapping("/get/{id}")
-	    public VerificationRequest getRequestById(@PathVariable int id) throws InvalidIDException {
-	        return verificationRequestService.getRequestById(id);
-	    }
+	@GetMapping("/getbyhotel/{hotelId}")
+	public VerificationRequest getRequestsByHotel( @PathVariable int hotelId)
+			throws InvalidIDException {
+		return verificationRequestService.getRequestByHotel(hotelId);
+	}
 
-	    // It helps to get all verification requests by owner and hotel IDs like it shows the owner and hotel which the owner have
-	    @GetMapping("/getbyownerandhotel/{ownerId}/{hotelId}")
-	    public List<VerificationRequest> getRequestsByOwnerAndHotel(@PathVariable int ownerId,
-	                                                                @PathVariable int hotelId) throws InvalidIDException {
-	        return verificationRequestService.getRequestsByOwnerAndHotel(ownerId, hotelId);
-	    }
+	@GetMapping("/pending")
+	public List<VerificationRequest> getPendingRequests() {
+		return verificationRequestService.getPendingRequests();
+	}
+	
+	@GetMapping("/getbyowner/{ownerId}")
+	public VerificationRequest getRequestsByOwner(@PathVariable int ownerId) throws InvalidIDException {
+		return verificationRequestService.getRequestsByOwnerId(ownerId);
+	}
+	
+	@GetMapping("/all")
+	public List<VerificationRequest> getAll() {
+		return verificationRequestService.getAll();
+	}
 
-	    // Basically the admin can see the list of requests so that he can easily verify and accept which one is the right thing!!
-	    @PutMapping("/accept/{id}")
-	    public VerificationRequest acceptRequest(@PathVariable int id) throws InvalidIDException {
-	        return verificationRequestService.acceptRequest(id);
-	    }
-
-	    // Similar to the above that the admin can easily cancel the request which it doesn't meet the requirement 
-	    @PutMapping("/cancel/{id}")
-	    public VerificationRequest cancelRequest(@PathVariable int id) throws InvalidIDException {
-	        return verificationRequestService.cancelRequest(id);
-	    }
-
-	    // First of all the admin can see these kind of verification list and by seeing the status the admin an easily validate 
-	    @GetMapping("/pending")
-	    public List<VerificationRequest> getPendingRequests() {
-	        return verificationRequestService.getPendingRequests();
-	    }
-	    
-	    // The hotel owner needs to change some of the info for the verification request then the onwer can be easily change by means of this api 
-	    @PutMapping("/update/by-owner/{ownerId}")
-	    public VerificationRequest updateByOwner(@PathVariable int ownerId,
-	                                             @RequestBody VerificationRequest updatedRequest) throws InvalidIDException {
-	        return verificationRequestService.updateRequestByOwner(ownerId, updatedRequest);
-	    }
-
-	    
-	    // finally the hotel owner can see his status of verification request by his owner portel viewing 
-	    @GetMapping("/status/{ownerId}")
-	    public List<VerificationRequest> getRequestsByOwner(@PathVariable int ownerId) throws InvalidIDException {
-	        return verificationRequestService.getRequestsByOwnerId(ownerId);
-	    }
-	    
-	    //need to check the verification api's in the postman
+	
 }

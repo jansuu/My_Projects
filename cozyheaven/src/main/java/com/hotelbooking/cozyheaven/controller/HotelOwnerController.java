@@ -20,7 +20,6 @@ public class HotelOwnerController {
 	private HotelOwnerService hotelOwnerService;
 
 	// To Add Hotel Owner
-
 	@PostMapping("/add")
 	public HotelOwner addHotelOwner(@RequestBody HotelOwner hotelOwner) {
 
@@ -29,7 +28,6 @@ public class HotelOwnerController {
 	}
 
 	// To Get Owner Details
-
 	@GetMapping("/get/{ownerid}")
 	public HotelOwner getOwnerByID(@PathVariable int ownerid) throws InvalidIDException {
 		return hotelOwnerService.getOwnerByID(ownerid);
@@ -37,11 +35,18 @@ public class HotelOwnerController {
 
 	// To Update Owner Info
 	@PutMapping("/update/{ownerid}")
-	public HotelOwner updateInfo(@PathVariable int ownerid, @RequestBody HotelOwner hotelOwner)
-			throws InvalidIDException {
-		HotelOwner owner = hotelOwnerService.getOwnerByID(ownerid);
-		owner.setAddress(hotelOwner.getAddress());
-		return hotelOwnerService.addHotelOwner(owner);
+	public HotelOwner updateInfo(@PathVariable int ownerid, @RequestBody HotelOwner request)throws InvalidIDException {
+		HotelOwner hotelOwner = hotelOwnerService.getOwnerByID(ownerid);
+		hotelOwner.setName(request.getName());
+		hotelOwner.setEmail(request.getEmail());
+		hotelOwner.setContact(request.getContact());
+		hotelOwner.setAddress(request.getAddress());
+		hotelOwner.setGovernmenttIDType(request.getGovernmenttIDType());
+		hotelOwner.setGovernmentIDNumber(request.getGovernmentIDNumber());
+		hotelOwner.setBuisnessRegistrationNumber(request.getBuisnessRegistrationNumber());
+		hotelOwner.setGstin(request.getGstin());
+		hotelOwner.setBankDetails(request.getBankDetails());
+		return hotelOwnerService.addHotelOwner(hotelOwner);
 
 	}
 

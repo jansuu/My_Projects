@@ -13,18 +13,6 @@ public class VerificationRequest {
     @Column(nullable = false)
     private int id;
 
-    @Column(nullable = false, length = 255)
-    private String licensen_number;
-
-    @Column(nullable = false)
-    private String property_ownership_proof;
-
-    @Column
-    private String message;
-
-    @Column
-    private String document;
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ApprovalStatus status;
@@ -35,8 +23,7 @@ public class VerificationRequest {
     @ManyToOne
     private Hotel hotel;
 
-
-
+    
     public int getId() {
         return id;
     }
@@ -45,37 +32,6 @@ public class VerificationRequest {
         this.id = id;
     }
 
-    public String getLicensen_number() {
-        return licensen_number;
-    }
-
-    public void setLicensen_number(String licensen_number) {
-        this.licensen_number = licensen_number;
-    }
-
-    public String getProperty_ownership_proof() {
-        return property_ownership_proof;
-    }
-
-    public void setProperty_ownership_proof(String property_ownership_proof) {
-        this.property_ownership_proof = property_ownership_proof;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getDocument() {
-        return document;
-    }
-
-    public void setDocument(String document) {
-        this.document = document;
-    }
 
     public ApprovalStatus getStatus() {
         return status;
