@@ -59,7 +59,21 @@ public class SecurityConfig {
 						.requestMatchers("/api/cancellationrequest/accept/{cancellationID}").hasAuthority("HotelOwner")
 						.requestMatchers("/api/cancellationrequest/reject/{cancellationID}").hasAuthority("HotelOwner")
 						.requestMatchers("/api/refund/proceed/{cancellationID}").hasAuthority("HotelOwner")
-
+						.requestMatchers("/api/admin/add/{userid}").permitAll()
+						.requestMatchers("/api/verificationrequest/add/{ownerId}").hasAuthority("HotelOwner")
+						.requestMatchers("/api/verificationrequest/approveOwner/{verificationid}").hasAuthority("Admin")
+						.requestMatchers("/api/verificationrequest/rejectOwner/{verificationid}").hasAuthority("Admin")
+						.requestMatchers("/api/verificationrequest/add/{hotelId}").hasAuthority("HotelOwner")
+						.requestMatchers("/api/verificationrequest/approveHotel/{verificationid}").hasAuthority("Admin")
+						.requestMatchers("/api/verificationrequest/rejectHotel/{verificationid}").hasAuthority("Admin")
+						.requestMatchers("/api/verificationrequest/get/{id}").hasAuthority("Admin")
+						.requestMatchers("/api/verificationrequest/getbyhotel/{hotelId}").hasAuthority("Admin")
+						.requestMatchers("/api/verificationrequest/pending").hasAuthority("Admin")
+						.requestMatchers("/api/verificationrequest/getbyowner/{ownerId}").hasAuthority("Admin")
+						.requestMatchers("/api/verificationrequest/all").hasAuthority("Admin")
+						
+						
+						
 						
 						.anyRequest().authenticated())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
