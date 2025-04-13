@@ -3,7 +3,6 @@ package com.hotelbooking.cozyheaven.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,12 +37,6 @@ public class InvoiceController {
     @GetMapping("/get/{id}")
     public Invoice getInvoiceById(@PathVariable int id) throws InvalidIDException {
         return invoiceService.getInvoiceById(id);
-    }
-
-    // Delete Invoice by ID
-    @DeleteMapping("/delete/{id}")
-    public void deleteInvoiceById(@PathVariable int id) {
-        invoiceService.deleteInvoiceById(id);
     }
 
     // Get Invoice by Booking ID

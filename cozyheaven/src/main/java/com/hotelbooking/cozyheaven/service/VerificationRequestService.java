@@ -120,8 +120,9 @@ public class VerificationRequestService {
 		HotelOwner owner = hotelOwnerService.getOwnerByID(ownerId);
 		return verificationRequestRepository.findByHotelOwnerId(owner.getId());
 	}
+	
+	
 	public List<VerificationRequest> getAll() {
-		
 		return verificationRequestRepository.findAll();
 	}
 

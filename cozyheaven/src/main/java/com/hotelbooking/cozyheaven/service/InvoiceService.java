@@ -1,5 +1,6 @@
 package com.hotelbooking.cozyheaven.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,9 +18,13 @@ public class InvoiceService {
 	private InvoiceRepository invoiceRepository;
 	
 	
-    public Invoice addInvoice(Invoice invoice) {
-        return invoiceRepository.save(invoice);
-    }
+	public Invoice addInvoice(Invoice invoice) {
+	    if (invoice.getInvoice_date() == null) {
+	        invoice.setInvoice_date(LocalDateTime.now());
+	    }
+	    return invoiceRepository.save(invoice);
+	}
+
 
     public List<Invoice> getAllInvoices() {
         return invoiceRepository.findAll();
@@ -33,9 +38,7 @@ public class InvoiceService {
         return optional.get();
     }
 
-    public void deleteInvoiceById(int id) {
-        invoiceRepository.deleteById(id);
-    }
+  
 
     public Invoice getInvoiceByBookingId(int bookingId) throws InvalidIDException {
         Optional<Invoice> optional = invoiceRepository.findByBooking_Id(bookingId);
