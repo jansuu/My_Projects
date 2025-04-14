@@ -53,7 +53,7 @@ public class HotelController {
 	}
 
 	// Get All Hotels With Owner Id
-	@GetMapping("/get/{hotelownerid}")
+	@GetMapping("/getbyowner/{hotelownerid}")
 	public List<Hotel> getHotelByOwnerID(@PathVariable int hotelownerid) throws InvalidIDException {
 		HotelOwner owner = hotelOwnerService.getOwnerByID(hotelownerid);
 		return hotelService.getHotelByOwnerID(hotelownerid);
@@ -61,7 +61,7 @@ public class HotelController {
 	}
 
 	// Get Hotel By Id
-	@GetMapping("/get/{hotelid}")
+	@GetMapping("/getbyhotel/{hotelid}")
 	public Hotel getHotelByID(@PathVariable int hotelid) throws InvalidIDException {
 
 		return hotelService.findByHotelID(hotelid);
@@ -84,20 +84,48 @@ public class HotelController {
 		HotelOwner owner = hotelOwnerService.getOwnerByID(hotelFind.getHotelOwner().getId());
 		
 		if(owner.getId()==ownerid) {
-			hotelFind.setName(hotelRequest.getName());
-		    hotelFind.setType(hotelRequest.getType());
-		    hotelFind.setDescription(hotelRequest.getDescription());
-		    hotelFind.setAddress(hotelRequest.getAddress());
-		    hotelFind.setCity(hotelRequest.getCity());
-		    hotelFind.setState(hotelRequest.getState());
-		    hotelFind.setZip(hotelRequest.getZip());
-		    hotelFind.setCountry(hotelRequest.getCountry());
-		    hotelFind.setContactEmail(hotelRequest.getContactEmail());
-		    hotelFind.setContact(hotelRequest.getContact());
-		    hotelFind.setImageUrls(hotelRequest.getImageUrls());
-		    hotelFind.setIsAvailable(hotelRequest.getIsAvailable());
-		    hotelFind.setCommonAmenities(hotelRequest.getCommonAmenities());
-		    hotelFind.setStarRating(hotelRequest.getStarRating());
+			if (hotelRequest.getName() != null)
+			    hotelFind.setName(hotelRequest.getName());
+
+			if (hotelRequest.getType() != null)
+			    hotelFind.setType(hotelRequest.getType());
+
+			if (hotelRequest.getDescription() != null)
+			    hotelFind.setDescription(hotelRequest.getDescription());
+
+			if (hotelRequest.getAddress() != null)
+			    hotelFind.setAddress(hotelRequest.getAddress());
+
+			if (hotelRequest.getCity() != null)
+			    hotelFind.setCity(hotelRequest.getCity());
+
+			if (hotelRequest.getState() != null)
+			    hotelFind.setState(hotelRequest.getState());
+
+			if (hotelRequest.getZip() != null)
+			    hotelFind.setZip(hotelRequest.getZip());
+
+			if (hotelRequest.getCountry() != null)
+			    hotelFind.setCountry(hotelRequest.getCountry());
+
+			if (hotelRequest.getContactEmail() != null)
+			    hotelFind.setContactEmail(hotelRequest.getContactEmail());
+
+			if (hotelRequest.getContact() != null)
+			    hotelFind.setContact(hotelRequest.getContact());
+
+			if (hotelRequest.getImageUrls() != null)
+			    hotelFind.setImageUrls(hotelRequest.getImageUrls());
+
+			if (hotelRequest.getIsAvailable() != null)
+			    hotelFind.setIsAvailable(hotelRequest.getIsAvailable());
+
+			if (hotelRequest.getCommonAmenities() != null)
+			    hotelFind.setCommonAmenities(hotelRequest.getCommonAmenities());
+
+			if (hotelRequest.getStarRating() != null)
+			    hotelFind.setStarRating(hotelRequest.getStarRating());
+
 		}
 		else
 			throw new InvalidIDException("Hotel Owner Id Not Matching With Hotel Owning Properties");
@@ -144,14 +172,14 @@ public class HotelController {
 	}
 
 	// To Get Reviews By Specific Hotels
-	@GetMapping("/review/{hotelid}")
+	@GetMapping("/reviewbyhotel/{hotelid}")
 	public List<Review> getReviewByHotel(@PathVariable int hotelid) throws InvalidIDException {
 		Hotel hotelFind = hotelService.findByHotelID(hotelid);
 		return reviewService.getReviewByHotel(hotelid);
 	}
 	
 	//To Get All Review By Owner
-	@GetMapping("/review/{ownerid}")
+	@GetMapping("/reviewbyowner/{ownerid}")
 	public List<Review> getReviewByOwner(@PathVariable int ownerid) throws InvalidIDException {
 		HotelOwner owner=hotelOwnerService.getOwnerByID(ownerid);
 		return reviewService.getReviewByOwner(ownerid);

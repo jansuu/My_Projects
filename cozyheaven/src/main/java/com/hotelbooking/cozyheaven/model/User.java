@@ -2,6 +2,7 @@ package com.hotelbooking.cozyheaven.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,6 +31,17 @@ public class User implements UserDetails {
 	private String password;
 
 	private String role;
+	
+	
+
+	public User(int id, String username, String email, String password, String role) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.role = role;
+	}
 
 	public int getId() {
 		return id;
@@ -83,4 +95,23 @@ public class User implements UserDetails {
 
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, id, password, role, username);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(email, other.email) && id == other.id && Objects.equals(password, other.password)
+				&& Objects.equals(role, other.role) && Objects.equals(username, other.username);
+	}
+
+	
 }

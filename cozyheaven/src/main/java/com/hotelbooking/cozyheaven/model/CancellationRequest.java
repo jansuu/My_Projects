@@ -1,6 +1,7 @@
 package com.hotelbooking.cozyheaven.model;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import com.hotelbooking.cozyheaven.enums.Status;
 
@@ -38,6 +39,19 @@ public class CancellationRequest {
 
 	@ManyToOne
 	private Booking booking;
+	
+
+	public CancellationRequest(int id, LocalDateTime requestDate, String reason, String details, Status status,
+			LocalDateTime processedAt, Booking booking) {
+		super();
+		this.id = id;
+		this.requestDate = requestDate;
+		this.reason = reason;
+		this.details = details;
+		this.status = status;
+		this.processedAt = processedAt;
+		this.booking = booking;
+	}
 
 	public int getId() {
 		return id;
@@ -94,5 +108,25 @@ public class CancellationRequest {
 	public void setBooking(Booking booking) {
 		this.booking = booking;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(booking, details, id, processedAt, reason, requestDate, status);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CancellationRequest other = (CancellationRequest) obj;
+		return Objects.equals(booking, other.booking) && Objects.equals(details, other.details) && id == other.id
+				&& Objects.equals(processedAt, other.processedAt) && Objects.equals(reason, other.reason)
+				&& Objects.equals(requestDate, other.requestDate) && status == other.status;
+	}
+	
 
 }

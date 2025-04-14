@@ -41,6 +41,20 @@ public class Room {
 	@ManyToOne
 	private Hotel hotel;
 
+	
+
+	public Room(int id, String name, double pricePerNight, int maxCapacity, String aminities,
+			RoomAvailabilityStatus availabilityStatus, RoomType type, Hotel hotel) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.pricePerNight = pricePerNight;
+		this.maxCapacity = maxCapacity;
+		this.aminities = aminities;
+		this.availabilityStatus = availabilityStatus;
+		this.type = type;
+		this.hotel = hotel;
+	}
 
 	public int getId() {
 		return id;

@@ -43,15 +43,33 @@ public class HotelOwnerController {
 	@PutMapping("/update/{ownerid}")
 	public HotelOwner updateInfo(@PathVariable int ownerid, @RequestBody HotelOwner request)throws InvalidIDException {
 		HotelOwner hotelOwner = hotelOwnerService.getOwnerByID(ownerid);
-		hotelOwner.setName(request.getName());
-		hotelOwner.setEmail(request.getEmail());
-		hotelOwner.setContact(request.getContact());
-		hotelOwner.setAddress(request.getAddress());
-		hotelOwner.setGovernmenttIDType(request.getGovernmenttIDType());
-		hotelOwner.setGovernmentIDNumber(request.getGovernmentIDNumber());
-		hotelOwner.setBuisnessRegistrationNumber(request.getBuisnessRegistrationNumber());
-		hotelOwner.setGstin(request.getGstin());
-		hotelOwner.setBankDetails(request.getBankDetails());
+		if (request.getName() != null) {
+	        hotelOwner.setName(request.getName());
+	    }
+	    if (request.getEmail() != null) {
+	        hotelOwner.setEmail(request.getEmail());
+	    }
+	    if (request.getContact() != null) {
+	        hotelOwner.setContact(request.getContact());
+	    }
+	    if (request.getAddress() != null) {
+	        hotelOwner.setAddress(request.getAddress());
+	    }
+	    if (request.getGovernmenttIDType() != null) {
+	        hotelOwner.setGovernmenttIDType(request.getGovernmenttIDType());
+	    }
+	    if (request.getGovernmentIDNumber() != null) {
+	        hotelOwner.setGovernmentIDNumber(request.getGovernmentIDNumber());
+	    }
+	    if (request.getBuisnessRegistrationNumber() != null) {
+	        hotelOwner.setBuisnessRegistrationNumber(request.getBuisnessRegistrationNumber());
+	    }
+	    if (request.getGstin() != null) {
+	        hotelOwner.setGstin(request.getGstin());
+	    }
+	    if (request.getBankDetails() != null) {
+	        hotelOwner.setBankDetails(request.getBankDetails());
+	    }
 		return hotelOwnerService.addHotelOwner(hotelOwner);
 
 	}
