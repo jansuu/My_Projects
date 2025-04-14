@@ -14,7 +14,7 @@ public class AdminService {
     private AdminRepository adminRepository;
 
     // Add a new Admin
-    public Admin addAdmin(Admin admin) {
+    public Admin addAdmin(Admin admin) throws InvalidIDException {
         return adminRepository.save(admin);
     }
 
