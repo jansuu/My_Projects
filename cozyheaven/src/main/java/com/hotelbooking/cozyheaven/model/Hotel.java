@@ -1,6 +1,7 @@
 package com.hotelbooking.cozyheaven.model;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import com.hotelbooking.cozyheaven.enums.DeletionRequest;
 import com.hotelbooking.cozyheaven.enums.HotelAvailability;
@@ -19,6 +20,7 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Hotel {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -52,7 +54,7 @@ public class Hotel {
 	private String contactEmail;
 
 	@Column(nullable = false)
-	private long contact;
+	private String contact;
 
 	@Column(nullable = false)
 	private String imageUrls;
@@ -75,7 +77,7 @@ public class Hotel {
 	private String propertyProofDetails;
 
 	@Column(nullable = false)
-	private double starRating;
+	private Double starRating;
 
 	@Column(nullable = false)
 	private LocalDateTime createdAt;
@@ -90,10 +92,42 @@ public class Hotel {
 	// relationship
 	@ManyToOne
 	private HotelOwner hotelOwner;
-
+	
 	
 
 	
+
+	
+
+	public Hotel(int id, String name, HotelType type, String description, String address, String city, String state,
+			String zip, String country, String contactEmail, String contact, String imageUrls, HotelStatus status,
+			HotelAvailability isAvailable, String commonAmenities, String licenseDetails, String propertyProofDetails,
+			Double starRating, LocalDateTime createdAt, LocalDateTime approvedAt, DeletionRequest deletionRequested,
+			HotelOwner hotelOwner) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.description = description;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.country = country;
+		this.contactEmail = contactEmail;
+		this.contact = contact;
+		this.imageUrls = imageUrls;
+		this.status = status;
+		this.isAvailable = isAvailable;
+		this.commonAmenities = commonAmenities;
+		this.licenseDetails = licenseDetails;
+		this.propertyProofDetails = propertyProofDetails;
+		this.starRating = starRating;
+		this.createdAt = createdAt;
+		this.approvedAt = approvedAt;
+		this.deletionRequested = deletionRequested;
+		this.hotelOwner = hotelOwner;
+	}
 
 	public HotelOwner getHotelOwner() {
 		return hotelOwner;
@@ -175,11 +209,11 @@ public class Hotel {
 		this.contactEmail = contactEmail;
 	}
 
-	public long getContact() {
+	public String getContact() {
 		return contact;
 	}
 
-	public void setContact(long contact) {
+	public void setContact(String contact) {
 		this.contact = contact;
 	}
 
@@ -215,11 +249,11 @@ public class Hotel {
 		this.propertyProofDetails = propertyProofDetails;
 	}
 
-	public double getStarRating() {
+	public Double getStarRating() {
 		return starRating;
 	}
 
-	public void setStarRating(double starRating) {
+	public void setStarRating(Double starRating) {
 		this.starRating = starRating;
 	}
 
@@ -270,6 +304,36 @@ public class Hotel {
 	public void setIsAvailable(HotelAvailability isAvailable) {
 		this.isAvailable = isAvailable;
 	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(address, approvedAt, city, commonAmenities, contact, contactEmail, country, createdAt,
+				deletionRequested, description, hotelOwner, id, imageUrls, isAvailable, licenseDetails, name,
+				propertyProofDetails, starRating, state, status, type, zip);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Hotel other = (Hotel) obj;
+		return Objects.equals(address, other.address) && Objects.equals(approvedAt, other.approvedAt)
+				&& Objects.equals(city, other.city) && Objects.equals(commonAmenities, other.commonAmenities)
+				&& Objects.equals(contact, other.contact) && Objects.equals(contactEmail, other.contactEmail)
+				&& Objects.equals(country, other.country) && Objects.equals(createdAt, other.createdAt)
+				&& deletionRequested == other.deletionRequested && Objects.equals(description, other.description)
+				&& Objects.equals(hotelOwner, other.hotelOwner) && id == other.id
+				&& Objects.equals(imageUrls, other.imageUrls) && isAvailable == other.isAvailable
+				&& Objects.equals(licenseDetails, other.licenseDetails) && Objects.equals(name, other.name)
+				&& Objects.equals(propertyProofDetails, other.propertyProofDetails)
+				&& Objects.equals(starRating, other.starRating) && Objects.equals(state, other.state)
+				&& status == other.status && type == other.type && Objects.equals(zip, other.zip);
+	}
+
 	
 
 }

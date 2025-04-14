@@ -24,7 +24,7 @@ public class HotelOwnerService {
 	public HotelOwner getOwnerByID(int id) throws InvalidIDException {
 
 		Optional<HotelOwner> optional = hotelOwnerRepository.findById(id);
-		if (optional == null)
+		if (optional.isEmpty())
 			throw new InvalidIDException("Hotel Owner ID Does Not Exist!");
 		return optional.get();
 	}

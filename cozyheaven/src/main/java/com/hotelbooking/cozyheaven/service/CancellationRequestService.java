@@ -32,8 +32,8 @@ public class CancellationRequestService {
 	//To Get Request By ID
 	public CancellationRequest findByID(int id) throws InvalidIDException {
 		Optional<CancellationRequest> optional = cancellationRequestRepository.findById(id);
-		if (optional == null)
-			throw new InvalidIDException("Hotel Owner ID Does Not Exist!");
+		if (optional.isEmpty())
+			throw new InvalidIDException("Cancellation ID Does Not Exist!");
 		return optional.get();
 	}
 	

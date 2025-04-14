@@ -44,6 +44,22 @@ public class Booking {
 
 	@ManyToOne
 	private Room room;
+	
+	
+
+	public Booking(int id, LocalDate checkIn, LocalDate checkOut, int capacity, double toatlAmount,
+			BookingStatus status, LocalDateTime bookedAt, Customer customer, Room room) {
+		super();
+		this.id = id;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.capacity = capacity;
+		this.toatlAmount = toatlAmount;
+		this.status = status;
+		this.bookedAt = bookedAt;
+		this.customer = customer;
+		this.room = room;
+	}
 
 	public int getId() {
 		return id;
@@ -116,5 +132,7 @@ public class Booking {
 	public void setRoom(Room room) {
 		this.room = room;
 	}
+	
+	
 
 }

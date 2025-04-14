@@ -29,6 +29,17 @@ public class Customer {
 	@Column(nullable = false)
 	private LocalDateTime accountCreatedAt;
 
+	
+	public Customer(int id, String name, String email, String address, String contact, LocalDateTime accountCreatedAt) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.address = address;
+		this.contact = contact;
+		this.accountCreatedAt = accountCreatedAt;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -1,6 +1,7 @@
 package com.hotelbooking.cozyheaven.model;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import com.hotelbooking.cozyheaven.enums.GovernmentIDType;
 import com.hotelbooking.cozyheaven.enums.IsVerified;
@@ -16,6 +17,8 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class HotelOwner {
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -58,7 +61,26 @@ public class HotelOwner {
 	@OneToOne
 	private User user;
 
+    
 
+	public HotelOwner(int id, String name, String email, String contact, String address,
+			GovernmentIDType governmenttIDType, String governmentIDNumber, String buisnessRegistrationNumber,
+			String gstin, String bankDetails, IsVerified isVerified, LocalDateTime createdAt, User user) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.contact = contact;
+		this.address = address;
+		this.governmenttIDType = governmenttIDType;
+		this.governmentIDNumber = governmentIDNumber;
+		this.buisnessRegistrationNumber = buisnessRegistrationNumber;
+		this.gstin = gstin;
+		this.bankDetails = bankDetails;
+		this.isVerified = isVerified;
+		this.createdAt = createdAt;
+		this.user = user;
+	}
 
 	public User getUser() {
 		return user;
@@ -164,6 +186,30 @@ public class HotelOwner {
 
 	public void setIsVerified(IsVerified isVerified) {
 		this.isVerified = isVerified;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(address, bankDetails, buisnessRegistrationNumber, contact, createdAt, email,
+				governmentIDNumber, governmenttIDType, gstin, id, isVerified, name, user);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		HotelOwner other = (HotelOwner) obj;
+		return Objects.equals(address, other.address) && Objects.equals(bankDetails, other.bankDetails)
+				&& Objects.equals(buisnessRegistrationNumber, other.buisnessRegistrationNumber)
+				&& Objects.equals(contact, other.contact) && Objects.equals(createdAt, other.createdAt)
+				&& Objects.equals(email, other.email) && Objects.equals(governmentIDNumber, other.governmentIDNumber)
+				&& governmenttIDType == other.governmenttIDType && Objects.equals(gstin, other.gstin) && id == other.id
+				&& isVerified == other.isVerified && Objects.equals(name, other.name)
+				&& Objects.equals(user, other.user);
 	}
 
 }

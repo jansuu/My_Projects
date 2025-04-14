@@ -56,9 +56,14 @@ public class ReviewService {
 
 	// created -dinesh
 	
-	public List<Review> getReviewByHotel(int hotelid) {
+	public List<Review> getReviewByHotel(int hotelid) throws InvalidIDException {
 		
-		return reviewRepository.findByBookingRoomHotelId(hotelid);
+		List<Review> review = reviewRepository.findByBookingRoomHotelId(hotelid);
+		if(review.isEmpty())
+		{
+			throw new InvalidIDException("No Review For The Hotel!");
+		}
+		return review;
 	}
 
 	public List<Review> getReviewByOwner(int ownerid) {

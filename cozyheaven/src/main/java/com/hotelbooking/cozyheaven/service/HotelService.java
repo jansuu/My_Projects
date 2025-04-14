@@ -34,7 +34,7 @@ public class HotelService {
 	// Get Hotel By Id
 	public Hotel findByHotelID(int hotelID) throws InvalidIDException {
 		Optional<Hotel> optional = hotelRepository.findById(hotelID);
-		if (optional == null)
+		if (optional.isEmpty())
 			throw new InvalidIDException("Hotel  ID Does Not Exist!");
 		return optional.get();
 	}
@@ -49,7 +49,7 @@ public class HotelService {
 	public List<Hotel> getByHotelName(String name) throws InvalidHotelNameException {
 
 		List<Hotel> hotels = hotelRepository.findByName(name);
-		if (hotels == null)
+		if (hotels.isEmpty())
 			throw new InvalidHotelNameException("Hotel Name Not Found!");
 		return hotels;
 	}
