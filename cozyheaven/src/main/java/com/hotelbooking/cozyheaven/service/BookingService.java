@@ -76,4 +76,9 @@ public class BookingService
 		return bookingRepository.findByRoomHotelHotelOwnerId(ownerid);
 	}
 
+	public List<Booking> getBookingByPlace(String location) 
+	{
+		return null;
+	}
+
 }

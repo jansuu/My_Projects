@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
+import com.hotelbooking.cozyheaven.model.Booking;
 import com.hotelbooking.cozyheaven.model.Report;
+import com.hotelbooking.cozyheaven.service.BookingService;
 import com.hotelbooking.cozyheaven.service.ReportService;
 
 @RestController
@@ -21,6 +23,8 @@ public class ReportController {
 
 	@Autowired
 	private ReportService reportService;
+	@Autowired
+	private BookingService bookingService;
 	
 	/*LIST OF HOTELS*/
 	// --by location
@@ -46,10 +50,10 @@ public class ReportController {
         return reportService.getReportById(id);
     }
 
-    //  Get report by booking ID
+    //  Get report by booking ID(Work)
     @GetMapping("/booking/{bookingId}")
-    public Report getReportByBookingId(@PathVariable int bookingId) throws InvalidIDException {
-        return reportService.getReportByBookingId(bookingId);
+    public Booking getReportByBookingId(@PathVariable int bookingId) throws InvalidIDException {
+        return bookingService.getBookingById(bookingId);
     }
 
     //  Get reports by month and year
@@ -78,7 +82,7 @@ public class ReportController {
 
     //  Get reports filtered by place keyword (from report name)
     @GetMapping("/filter/place/{location}")
-    public List<Report> getByPlace(@PathVariable String location) {
-        return reportService.getReportsByPlace(location);
+    public List<Booking> getByPlace(@PathVariable String location) {
+        return bookingService.getBookingByPlace(location);
     }
 }
