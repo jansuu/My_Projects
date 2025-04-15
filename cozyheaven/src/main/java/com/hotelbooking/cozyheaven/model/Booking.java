@@ -61,6 +61,10 @@ public class Booking {
 		this.room = room;
 	}
 
+	public Booking() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}

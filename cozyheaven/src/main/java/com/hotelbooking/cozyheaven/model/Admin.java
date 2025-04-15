@@ -82,4 +82,9 @@ public class Admin {
 		this.last_Log = last_Log;
 	}
 
+	public void setContact(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
