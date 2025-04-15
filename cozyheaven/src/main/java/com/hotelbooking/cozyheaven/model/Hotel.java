@@ -129,6 +129,10 @@ public class Hotel {
 		this.hotelOwner = hotelOwner;
 	}
 
+	public Hotel() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public HotelOwner getHotelOwner() {
 		return hotelOwner;
 	}

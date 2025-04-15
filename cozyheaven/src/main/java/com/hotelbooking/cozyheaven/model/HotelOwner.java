@@ -82,6 +82,10 @@ public class HotelOwner {
 		this.user = user;
 	}
 
+	public HotelOwner() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public User getUser() {
 		return user;
 	}
