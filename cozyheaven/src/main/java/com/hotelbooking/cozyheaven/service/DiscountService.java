@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hotelbooking.cozyheaven.model.Discount;
+import com.hotelbooking.cozyheaven.model.Hotel;
 import com.hotelbooking.cozyheaven.repository.DiscountRepository;
 
 @Service
