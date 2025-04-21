@@ -1,12 +1,12 @@
 package com.hotelbooking.cozyheaven.model;
 
-import java.time.LocalDateTime;
-
+import java.time.LocalDate;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Customer {
@@ -27,10 +27,10 @@ public class Customer {
 	private String contact;
 
 	@Column(nullable = false)
-	private LocalDateTime accountCreatedAt;
+	private LocalDate accountCreatedAt;
 
 	
-	public Customer(int id, String name, String email, String address, String contact, LocalDateTime accountCreatedAt) {
+	public Customer(int id, String name, String email, String address, String contact, LocalDate accountCreatedAt) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -38,6 +38,19 @@ public class Customer {
 		this.address = address;
 		this.contact = contact;
 		this.accountCreatedAt = accountCreatedAt;
+	}
+
+	@OneToOne
+	private User user;
+	
+	
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public int getId() {
@@ -82,11 +95,11 @@ public class Customer {
 		this.contact = contact;
 	}
 
-	public LocalDateTime getAccountCreatedAt() {
+	public LocalDate getAccountCreatedAt() {
 		return accountCreatedAt;
 	}
 
-	public void setAccountCreatedAt(LocalDateTime accountCreatedAt) {
+	public void setAccountCreatedAt(LocalDate accountCreatedAt) {
 		this.accountCreatedAt = accountCreatedAt;
 	}
 

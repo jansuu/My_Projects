@@ -25,6 +25,7 @@ public class Discount {
 	private LocalDate validFromm;
 	@Column(nullable = false)
 	private LocalDate validTo;
+	
 	@ManyToOne
 	private Season season;
 	

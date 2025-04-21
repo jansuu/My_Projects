@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
+import com.hotelbooking.cozyheaven.exception.InvalidUsernameException;
 import com.hotelbooking.cozyheaven.model.Customer;
 import com.hotelbooking.cozyheaven.service.CustomerService;
 
@@ -24,7 +25,7 @@ public class CustomerController {
 	private CustomerService customerService;
 	
 	@PostMapping("/add")
-	public Customer addCustomer(@RequestBody Customer customer)
+	public Customer addCustomer(@RequestBody Customer customer) throws InvalidUsernameException
 	{
 		return customerService.addCustomer(customer);
 	}
@@ -59,7 +60,7 @@ public class CustomerController {
 
 	// Update customer
     @PutMapping("/update/{id}")
-	public Customer updateCustomer(@PathVariable int id, @RequestBody Customer newValue) throws InvalidIDException
+	public Customer updateCustomer(@PathVariable int id, @RequestBody Customer newValue) throws InvalidIDException, InvalidUsernameException
 	{
 			Customer customer = customerService.getCustomerById(id);
 			if(newValue.getName() != null)

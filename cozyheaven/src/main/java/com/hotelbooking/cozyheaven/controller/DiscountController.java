@@ -58,5 +58,10 @@ public class DiscountController {
 	{
 		return discountService.getAllDiscount();
 	}
+	
+	//find hotel by discount(id,name)
+	
+	
+	
 
 }
