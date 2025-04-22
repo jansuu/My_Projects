@@ -1,6 +1,6 @@
 package com.hotelbooking.cozyheaven.service;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -19,9 +19,6 @@ public class InvoiceService {
 	
 	
 	public Invoice addInvoice(Invoice invoice) {
-	    if (invoice.getInvoice_date() == null) {
-	        invoice.setInvoice_date(LocalDateTime.now());
-	    }
 	    return invoiceRepository.save(invoice);
 	}
 
