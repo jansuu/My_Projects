@@ -70,6 +70,9 @@ public class SecurityConfig {
 						.requestMatchers("/api/verificationrequest/pending").hasAuthority("Admin")
 						.requestMatchers("/api/verificationrequest/getbyowner/{ownerId}").hasAuthority("Admin")
 						.requestMatchers("/api/verificationrequest/all").hasAuthority("Admin")
+						.requestMatchers("/api/season/add").hasAuthority("Admin")
+						.requestMatchers("/api/season/getall").hasAnyAuthority("Admin","Customer","HotelOwner")
+						.requestMatchers("/api/season/getall").hasAuthority("Customer")
 						.requestMatchers("/api/discount/add/{hid}/{sid}").hasAuthority("Admin")//
 						.requestMatchers("/api/customer/add").permitAll()
 						.requestMatchers("/api/discount/gethotelname/{discountname}").hasAnyAuthority("Admin","Customer")
