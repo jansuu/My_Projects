@@ -72,6 +72,7 @@ public class SecurityConfig {
 						.requestMatchers("/api/verificationrequest/all").hasAuthority("Admin")
 						.requestMatchers("/api/discount/add/{hid}/{sid}").hasAuthority("Admin")//
 						.requestMatchers("/api/customer/add").permitAll()
+						.requestMatchers("/api/discount/gethotelname/{discountname}").hasAnyAuthority("Admin","Customer")
 						
 						
 						

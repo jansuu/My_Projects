@@ -34,4 +34,10 @@ public class DiscountService {
 		return discountRepository.findAll();
 	}
 
+	public List<String> getHotelByDiscountName(String discountname) 
+	{
+		List<Hotel> hotels = discountRepository.findHotelByCoupon(discountname);
+		return hotels.stream().map(h->h.getName()).toList();
+	}
+
 }
