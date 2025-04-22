@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hotelbooking.cozyheaven.model.Discount;
+import com.hotelbooking.cozyheaven.model.Hotel;
 import com.hotelbooking.cozyheaven.repository.DiscountRepository;
 
 @Service
@@ -31,6 +32,12 @@ public class DiscountService {
 	public List<Discount> getAllDiscount() 
 	{
 		return discountRepository.findAll();
+	}
+
+	public List<String> getHotelByDiscountName(String discountname) 
+	{
+		List<Hotel> hotels = discountRepository.findHotelByCoupon(discountname);
+		return hotels.stream().map(h->h.getName()).toList();
 	}
 
 }

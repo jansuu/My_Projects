@@ -58,5 +58,14 @@ public class DiscountController {
 	{
 		return discountService.getAllDiscount();
 	}
+	
+	//find hotel by discount(id,name)
+	@GetMapping("/gethotelname/{discountname}")
+	public List<String> getHotelByDiscountName(@PathVariable String discountname)
+	{
+		return discountService.getHotelByDiscountName(discountname);
+	}
+	
+	
 
 }

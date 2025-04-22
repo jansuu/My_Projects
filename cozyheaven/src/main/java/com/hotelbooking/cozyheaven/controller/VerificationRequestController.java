@@ -66,23 +66,23 @@ public class VerificationRequestController {
 		return verificationRequestService.getRequestById(id);
 	}
 
-	
+	// get Verification requests by hotelID
 	@GetMapping("/getbyhotel/{hotelId}")
 	public VerificationRequest getRequestsByHotel( @PathVariable int hotelId)
 			throws InvalidIDException {
 		return verificationRequestService.getRequestByHotel(hotelId);
 	}
-
+	// showcase the verification request by its pending status
 	@GetMapping("/pending")
 	public List<VerificationRequest> getPendingRequests() {
 		return verificationRequestService.getPendingRequests();
 	}
-	
+	// get Verification request by ownerID
 	@GetMapping("/getbyowner/{ownerId}")
 	public VerificationRequest getRequestsByOwner(@PathVariable int ownerId) throws InvalidIDException {
 		return verificationRequestService.getRequestsByOwnerId(ownerId);
 	}
-	
+	// get all verification request 
 	@GetMapping("/all")
 	public List<VerificationRequest> getAll() {
 		return verificationRequestService.getAll();
