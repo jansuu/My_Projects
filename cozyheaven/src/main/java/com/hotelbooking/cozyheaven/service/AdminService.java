@@ -1,5 +1,7 @@
 package com.hotelbooking.cozyheaven.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +22,12 @@ public class AdminService {
 
     // Get Admin by ID
     public Admin getAdminByID(int adminid) throws InvalidIDException {
-        return adminRepository.findById(adminid)
-                .orElseThrow(() -> new InvalidIDException("Admin not found for ID: " + adminid));
+    	Optional<Admin> optional = adminRepository.findById(adminid);
+    	if(optional.isEmpty())
+    		throw new InvalidIDException("Admin Id Is Invalid and Not Available ");
+        return optional.get();
+        
+              
     }
 
     // Update Admin details

@@ -103,7 +103,7 @@ public class VerificationRequestService {
 		return optional.get();
 	}
 
-	// Get all requests by ownerId and hotelId
+	// Get all requests by hotelId
 	public VerificationRequest getRequestByHotel( int hotelId) throws InvalidIDException {
 		Hotel hotel = hotelService.findByHotelID(hotelId);
 		return verificationRequestRepository.findByHotelId(hotel.getId());
@@ -115,13 +115,13 @@ public class VerificationRequestService {
 	}
 
 	
-
+	// Get verification requests by ownerId
 	public VerificationRequest getRequestsByOwnerId(int ownerId) throws InvalidIDException {
 		HotelOwner owner = hotelOwnerService.getOwnerByID(ownerId);
 		return verificationRequestRepository.findByHotelOwnerId(owner.getId());
 	}
 	
-	
+	// get all the verification list
 	public List<VerificationRequest> getAll() {
 		return verificationRequestRepository.findAll();
 	}
