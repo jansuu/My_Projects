@@ -30,6 +30,12 @@ public class Customer {
 	private LocalDate accountCreatedAt;
 
 	
+	
+	public Customer() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Customer(int id, String name, String email, String address, String contact, LocalDate accountCreatedAt) {
 		super();
 		this.id = id;

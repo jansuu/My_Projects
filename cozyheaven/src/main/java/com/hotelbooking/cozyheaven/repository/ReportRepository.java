@@ -8,6 +8,8 @@ import com.hotelbooking.cozyheaven.model.Report;
 public interface ReportRepository extends JpaRepository<Report, Integer>
 {
 
+//	List<Booking> findByBookingBookedat(LocalDateTime bookdate);
+
 		
 
 }

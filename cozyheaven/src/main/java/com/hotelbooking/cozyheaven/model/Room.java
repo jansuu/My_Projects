@@ -43,6 +43,11 @@ public class Room {
 
 	
 
+	public Room() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Room(int id, String name, double pricePerNight, int maxCapacity, String aminities,
 			RoomAvailabilityStatus availabilityStatus, RoomType type, Hotel hotel) {
 		super();

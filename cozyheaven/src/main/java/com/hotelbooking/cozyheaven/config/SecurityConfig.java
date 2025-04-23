@@ -80,7 +80,7 @@ public class SecurityConfig {
 						
 						
 						
-						.anyRequest().authenticated()
+						.anyRequest().permitAll()
 						)
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
