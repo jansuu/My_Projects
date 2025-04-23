@@ -1,6 +1,5 @@
 package com.hotelbooking.cozyheaven.controller;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import com.hotelbooking.cozyheaven.model.Booking;
 import com.hotelbooking.cozyheaven.model.Payment;
 import com.hotelbooking.cozyheaven.service.BookingService;
 import com.hotelbooking.cozyheaven.service.PaymentService;
-import com.hotelbooking.cozyheaven.service.ReportService;
+
 
 
 @RestController
@@ -24,8 +23,6 @@ public class ReportController
 
 	@Autowired
 	private BookingService bookingService;
-	@Autowired
-	private ReportService reportService;
 	@Autowired
 	private PaymentService paymentService;
 	
@@ -83,6 +80,12 @@ public class ReportController
 	public Double getAmountByCustomDate(@PathVariable LocalDateTime paymentdate)
 	{
 		return paymentService.getAmountByCustomDate(paymentdate);
+	}
+	//9 - list of bookings by hotel (location) optional(hotelname)
+	@GetMapping("/getbookingbylocation/{location}")
+	public List<Booking> getBookingsByHotelLocation(@PathVariable String location)
+	{
+		return bookingService.getBookingByPlace(location);
 	}
 	
 	

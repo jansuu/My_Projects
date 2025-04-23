@@ -81,7 +81,7 @@ public class BookingService
 
 	public List<Booking> getBookingByPlace(String location) 
 	{
-		return null;
+		return bookingRepository.findByRoomHotelCity(location);
 	}
 
 	public long getCountOfBooking() 
