@@ -20,4 +20,6 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
 	List<Booking> findByBookedAt(LocalDateTime bookdate);
 
+	List<Booking> findByRoomHotelCity(String location);
+
 }
