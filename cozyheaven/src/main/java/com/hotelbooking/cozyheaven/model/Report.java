@@ -15,5 +15,13 @@ public class Report {
 	
 	@ManyToOne
 	private Booking Booking;
+	/*
+	 * 1. list of bookings
+	 * 2. count(list of bookings)
+	 * 3. filter by date of booking (list of booking or count)
+	 * 4. total amount (revenue) by date
+	 * 
+	 * */
+
 
 }
