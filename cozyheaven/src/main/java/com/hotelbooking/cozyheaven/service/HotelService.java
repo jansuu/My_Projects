@@ -66,4 +66,9 @@ public class HotelService {
 		return hotelRepository.findByDeletionRequested(DeletionRequest.Yes);
 	}
 
+	public List<Hotel> getAllHotelsUnderUs() 
+	{
+		return hotelRepository.findAll();
+	}
+
 }

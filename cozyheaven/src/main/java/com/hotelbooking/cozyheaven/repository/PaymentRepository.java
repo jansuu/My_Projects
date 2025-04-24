@@ -14,6 +14,8 @@ public interface PaymentRepository extends JpaRepository<Payment, Integer>  {
 
 	List<Payment> findByPaymentDate(LocalDateTime paymentdate);
 
+	List<Payment> findByBookingRoomHotelId(int hotelid);
+
 //	Optional<Payment> findByCustomer_Id(int customerId);
 
 

@@ -111,4 +111,17 @@ public class PaymentService
 		return totalSum;
 	}
 
+	public Double getTotalRevenueByHotelId(int hotelid) 
+	{
+		List<Payment> payment = paymentRepository.findByBookingRoomHotelId(hotelid);
+		List<Double> totalAmounts = payment.stream()
+                .map(Payment::getAmountPaid)//this is method reference operator which refers a method without invoke it and this is a cleaner way of working instead of traditional Lamda expression
+                .toList();
+		
+		double totalSum = totalAmounts.stream()
+                .mapToDouble(Double::doubleValue)//this is method reference operator which refers a method without invoke it and this is a cleaner way of working instead of traditional Lamda expression
+                .sum();
+		return totalSum;
+	}
+
 }
