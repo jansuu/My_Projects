@@ -22,4 +22,6 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
 
 	List<Booking> findByRoomHotelCity(String location);
 
+	List<Booking> findByBookedAtBetween(LocalDateTime fromdate, LocalDateTime todate);
+
 }

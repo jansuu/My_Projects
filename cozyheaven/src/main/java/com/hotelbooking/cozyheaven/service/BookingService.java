@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.hotelbooking.cozyheaven.controller.BookingController;
+import com.hotelbooking.cozyheaven.exception.BookingNotFoundException;
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
 import com.hotelbooking.cozyheaven.model.Booking;
 import com.hotelbooking.cozyheaven.model.Room;
@@ -98,6 +99,15 @@ public class BookingService
 	{
 		List<Booking> book = bookingRepository.findByBookedAt(bookdate);
 		return book.size();
+	}
+
+	public List<Booking> getListofBookingByCustom(LocalDateTime fromdate, LocalDateTime todate) throws BookingNotFoundException 
+	{
+		List<Booking> bookings = bookingRepository.findByBookedAtBetween(fromdate,todate);
+		if(bookings.isEmpty())
+			throw new BookingNotFoundException("No Records Found between these dates");
+			
+		return bookings;
 	}
 	
 

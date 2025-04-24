@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hotelbooking.cozyheaven.model.Booking;
+import com.hotelbooking.cozyheaven.model.Hotel;
 import com.hotelbooking.cozyheaven.model.Payment;
 import com.hotelbooking.cozyheaven.service.BookingService;
+import com.hotelbooking.cozyheaven.service.HotelService;
 import com.hotelbooking.cozyheaven.service.PaymentService;
 
 
@@ -25,6 +27,8 @@ public class ReportController
 	private BookingService bookingService;
 	@Autowired
 	private PaymentService paymentService;
+	@Autowired
+	private HotelService hotelService;
 	
 	// 1 - list of bookings
 	@GetMapping("/listofbookings")
@@ -87,6 +91,39 @@ public class ReportController
 	{
 		return bookingService.getBookingByPlace(location);
 	}
+	
+	
+	//10 -  list of Hotels
+	@GetMapping("/allhotels")
+	public List<Hotel> getAllHotelsUnderUs()
+	{
+		return hotelService.getAllHotelsUnderUs();
+	}
+	
+	//11 - total revenue by the hotel id
+	@GetMapping("/totalamount/{hotelid}")
+	public Double getTotalRevenueByHotelId(@PathVariable int hotelid)
+	{
+		return paymentService.getTotalRevenueByHotelId(hotelid);
+	}
+	
+	//12 - List of Bookings By Custom Range of Date
+	@GetMapping("/listofbookingsbycustom/{fromdate}/{todate}")
+	public List<Booking> getListofBookingByCustom(@PathVariable LocalDateTime fromdate,@PathVariable LocalDateTime todate) throws Exception
+	{
+		return bookingService.getListofBookingByCustom(fromdate,todate);
+	}
+	
+	
+	// Get all Reviews for the Customer Analysis card in UI then we can filter the ratings and count of reviews 
+	//Once we are done with that filteration we need to create the Chart and Diagrams
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
