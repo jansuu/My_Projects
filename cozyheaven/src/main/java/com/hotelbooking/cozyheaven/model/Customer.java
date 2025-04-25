@@ -28,8 +28,6 @@ public class Customer {
 
 	@Column(nullable = false)
 	private LocalDate accountCreatedAt;
-
-	
 	
 	public Customer() {
 		super();
@@ -90,8 +88,6 @@ public class Customer {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-	
 
 	public String getContact() {
 		return contact;

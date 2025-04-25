@@ -16,19 +16,25 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
 import com.hotelbooking.cozyheaven.exception.InvalidUsernameException;
 import com.hotelbooking.cozyheaven.model.Customer;
+import com.hotelbooking.cozyheaven.model.User;
 import com.hotelbooking.cozyheaven.service.CustomerService;
+import com.hotelbooking.cozyheaven.service.UserService;
 
 @RestController
 @RequestMapping("/api/customer")
 public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	private UserService userService;
 	
-	@PostMapping("/add")
-	public Customer addCustomer(@RequestBody Customer customer) throws InvalidUsernameException
-	{
-		return customerService.addCustomer(customer);
-	}
+	//@PostMapping("/add")
+	//public Customer addCustomer(@RequestBody User user) throws InvalidUsernameException
+	//{
+		//User user =  userService.getuser(user);
+	//	user.setRole("VENDORE");
+		//return customerService.addCustomer(user);
+	//}
 	
 	@GetMapping("/getAll")
 	public List<Customer> getAllEmployees()
