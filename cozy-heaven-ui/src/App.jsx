@@ -1,18 +1,22 @@
-import Loginpage from "./components/auth/login"
-import AfterLanding from "./components/customer/afterlanding"
-import Contact from "./components/customer/contact"
-import HomePage from "./components/customer/landingpage"
-import Service from "./components/customer/service"
-import SignupPage from "./components/customer/SignUp"
+import { BrowserRouter, Routes, Route } from "react-router";
+import LoginPage from "./components/auth/LoginPage";
+import AfterLanding from "./components/customer/afterlanding";
+import Contact from "./components/customer/contact";
+import HomePage from "./components/customer/landingpage";
+import Service from "./components/customer/service";
 
 function App() {
   return (
-    <div>
-      
-    <Loginpage />
-
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/customer" element={<AfterLanding />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/service" element={<Service />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

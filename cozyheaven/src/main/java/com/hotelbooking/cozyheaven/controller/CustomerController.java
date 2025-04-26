@@ -3,6 +3,7 @@ package com.hotelbooking.cozyheaven.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,26 +17,23 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
 import com.hotelbooking.cozyheaven.exception.InvalidUsernameException;
 import com.hotelbooking.cozyheaven.model.Customer;
-import com.hotelbooking.cozyheaven.model.User;
 import com.hotelbooking.cozyheaven.service.CustomerService;
-import com.hotelbooking.cozyheaven.service.UserService;
 
 @RestController
 @RequestMapping("/api/customer")
+@CrossOrigin(origins = {"http://localhost:5173/"})
 public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
-	@Autowired
-	private UserService userService;
+
+	// add customer details from user sign up
+	@PostMapping("/add")
+	public Customer addCustomer(@RequestBody Customer customer) throws InvalidUsernameException
+	{
+		return customerService.addCustomer(customer);
+	}
 	
-	//@PostMapping("/add")
-	//public Customer addCustomer(@RequestBody User user) throws InvalidUsernameException
-	//{
-		//User user =  userService.getuser(user);
-	//	user.setRole("VENDORE");
-		//return customerService.addCustomer(user);
-	//}
-	
+	// get all customer details 
 	@GetMapping("/getAll")
 	public List<Customer> getAllEmployees()
 	{
