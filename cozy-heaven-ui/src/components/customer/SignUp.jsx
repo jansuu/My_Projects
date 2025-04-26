@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import "./sign.css";
-import { Link } from "react-router";
 
 function SignupPage() {
   return (

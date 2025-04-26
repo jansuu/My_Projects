@@ -22,7 +22,6 @@ public class CustomerService
 	
 	@Autowired
 	private AuthRepository authRepository;
-	
 
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
@@ -30,6 +29,7 @@ public class CustomerService
 
 	public Customer addCustomer(Customer customer) throws InvalidUsernameException 
 	{
+		// TODO Auto-generated method stub
 		User user = customer.getUser();
 		User user1 = authRepository.findByUsername(user.getUsername());
 		if(user1 != null)
