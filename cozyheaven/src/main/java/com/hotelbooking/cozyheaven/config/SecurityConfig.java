@@ -28,7 +28,8 @@ public class SecurityConfig {
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests((authorize) -> authorize.requestMatchers("api/auth/signup").permitAll()
+				.authorizeHttpRequests((authorize) -> authorize
+						.requestMatchers("api/auth/signup").permitAll()
 						.requestMatchers("/api/auth/login").authenticated()
 						.requestMatchers("/api/auth/token/generate").permitAll()
 						.requestMatchers("/api/auth/user/details").authenticated()
@@ -73,7 +74,7 @@ public class SecurityConfig {
 						.requestMatchers("/api/season/add").hasAuthority("Admin")
 						.requestMatchers("/api/season/getall").hasAnyAuthority("Admin","Customer","HotelOwner")
 						.requestMatchers("/api/season/getall").hasAuthority("Customer")
-						.requestMatchers("/api/discount/add/{hid}/{sid}").hasAuthority("Admin")//
+						.requestMatchers("/api/discount/add/{hid}/{sid}").hasAuthority("Admin")
 						.requestMatchers("/api/customer/add").permitAll()
 						.requestMatchers("/api/discount/gethotelname/{discountname}").hasAnyAuthority("Admin","Customer")
 						

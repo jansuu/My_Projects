@@ -1,5 +1,6 @@
 package com.hotelbooking.cozyheaven.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,25 +27,18 @@ public class CustomerService
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
+	@Autowired
+	private AuthService authService;
+	
 
 	public Customer addCustomer(Customer customer) throws InvalidUsernameException 
 	{
 		// TODO Auto-generated method stub
 		User user = customer.getUser();
-		User user1 = authRepository.findByUsername(user.getUsername());
-		if(user1 != null)
-		{
-			throw new InvalidUsernameException("User Already Exist!!!! Keep going and Try to Login......");
-		}
-		if(user.getRole() == null)
-		{
-			user.setRole("Customer");
-		}
-		String encodedPass = bcrypt.encode(user.getPassword());
-		user.setPassword(encodedPass);
-		
-		authRepository.save(user);
+		user.setRole("CUSTOMER");
+		user = authService.signUp(user);
 		customer.setUser(user);
+		customer.setAccountCreatedAt(LocalDate.now());
 		return customerRepository.save(customer);
 	}
 

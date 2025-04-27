@@ -32,11 +32,6 @@ public class User implements UserDetails {
 
 	private String role;
 	
-	
-
-	
-	
-	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
