@@ -1,88 +1,130 @@
-	package com.hotelbooking.cozyheaven.controller;
+package com.hotelbooking.cozyheaven.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hotelbooking.cozyheaven.exception.InvalidIDException;
 import com.hotelbooking.cozyheaven.model.Booking;
-import com.hotelbooking.cozyheaven.model.Report;
+import com.hotelbooking.cozyheaven.model.Hotel;
+import com.hotelbooking.cozyheaven.model.Payment;
 import com.hotelbooking.cozyheaven.service.BookingService;
-import com.hotelbooking.cozyheaven.service.ReportService;
+import com.hotelbooking.cozyheaven.service.HotelService;
+import com.hotelbooking.cozyheaven.service.PaymentService;
+
+
 
 @RestController
 @RequestMapping("/api/report")
-public class ReportController {
+public class ReportController
+{
 
-	@Autowired
-	private ReportService reportService;
 	@Autowired
 	private BookingService bookingService;
+	@Autowired
+	private PaymentService paymentService;
+	@Autowired
+	private HotelService hotelService;
 	
-	/*LIST OF HOTELS*/
-	// --by location
-	// --by season
+	// 1 - list of bookings
+	@GetMapping("/listofbookings")
+	public List<Booking> getAllBooking()
+	{
+		return bookingService.getAllBooking();
+	}
 	
-	/*Fetch the Bookings of Date of Booking basis,*/
+	//2 - Count of Bookings
+	@GetMapping("/countofbookings")
+	public long getCountOfBooking()
+	{
+		return bookingService.getCountOfBooking();
+	}
 	
-	 //  Add new report
-    @PostMapping("/add")
-    public Report addReport(@RequestBody Report report) {
-        return reportService.addReport(report);
-    }
-
-    //  Get all reports
-    @GetMapping("/all")
-    public List<Report> getAllReports() {
-        return reportService.getAllReports();
-    }
-
-    //  Get report by report ID
-    @GetMapping("/{id}")
-    public Report getReportById(@PathVariable int id) throws InvalidIDException {
-        return reportService.getReportById(id);
-    }
-
-    //  Get report by booking ID(Work)
-    @GetMapping("/booking/{bookingId}")
-    public Booking getReportByBookingId(@PathVariable int bookingId) throws InvalidIDException {
-        return bookingService.getBookingById(bookingId);
-    }
-
-    //  Get reports by month and year
-    @GetMapping("/filter/month-year")
-    public List<Report> getByMonthAndYear(@RequestParam int month, @RequestParam int year) {
-        return reportService.getReportsByMonthYear(month, year);
-    }
-
-    //  Get reports by room type
-    @GetMapping("/filter/room-type/{type}")
-    public List<Report> getByRoomType(@PathVariable String type) {
-        return reportService.getReportsByRoomType(type);
-    }
-
-    //  Get reports by season like summer and winter
-    @GetMapping("/filter/season/{seasonName}")
-    public List<Report> getBySeason(@PathVariable String seasonName) {
-        return reportService.getReportsBySeason(seasonName);
-    }
-
-    // Get occupancy-related reports
-    @GetMapping("/occupancy")
-    public List<Report> getOccupancyReports() {
-        return reportService.getOccupancyReports();
-    }
-
-    //  Get reports filtered by place keyword (from report name)
-    @GetMapping("/filter/place/{location}")
-    public List<Booking> getByPlace(@PathVariable String location) {
-        return bookingService.getBookingByPlace(location);
-    }
+	//3 - Find by date 
+	@GetMapping("/getbooking/{bookdate}")
+	public List<Booking> getListOfBookingByDate(@PathVariable LocalDateTime bookdate)
+	{
+		return bookingService.getListOfBookingByDate(bookdate);
+	}
+	
+	//4 - Find By date Count
+	@GetMapping("/getbookingcount/{bookdate}")
+	public long getListOfBookingByDateCount(@PathVariable LocalDateTime bookdate)
+	{
+		return bookingService.getListOfBookingByDateCount(bookdate);
+	}
+	
+	//5 - List of payments 
+	@GetMapping("/getlistofpayment")
+	public List<Payment> getListOfPayment()
+	{
+		return paymentService.getListOfPayment();
+	}
+	
+	//6 - Total amount in the listofpayment(WHole Amount)
+	@GetMapping("/getamountlist")
+	public Double getAmountWithListOfPayment()
+	{
+		return paymentService.getAmountWithListOfPayment();
+	}
+	
+	//7 - list of payments by date
+	@GetMapping("/getlistofpayments/{paymentdate}")
+	public List<Payment> getListOfPaymentByDate(@PathVariable LocalDateTime paymentdate)
+	{
+		return paymentService.getListOfPaymentByDate(paymentdate);
+	}
+	
+	//8 - list of payments by date TotalAMountRevenue(Custom AMount)
+	@GetMapping("/getamount/{paymentdate}")
+	public Double getAmountByCustomDate(@PathVariable LocalDateTime paymentdate)
+	{
+		return paymentService.getAmountByCustomDate(paymentdate);
+	}
+	//9 - list of bookings by hotel (location) optional(hotelname)
+	@GetMapping("/getbookingbylocation/{location}")
+	public List<Booking> getBookingsByHotelLocation(@PathVariable String location)
+	{
+		return bookingService.getBookingByPlace(location);
+	}
+	
+	
+	//10 -  list of Hotels
+	@GetMapping("/allhotels")
+	public List<Hotel> getAllHotelsUnderUs()
+	{
+		return hotelService.getAllHotelsUnderUs();
+	}
+	
+	//11 - total revenue by the hotel id
+	@GetMapping("/totalamount/{hotelid}")
+	public Double getTotalRevenueByHotelId(@PathVariable int hotelid)
+	{
+		return paymentService.getTotalRevenueByHotelId(hotelid);
+	}
+	
+	//12 - List of Bookings By Custom Range of Date
+	@GetMapping("/listofbookingsbycustom/{fromdate}/{todate}")
+	public List<Booking> getListofBookingByCustom(@PathVariable LocalDateTime fromdate,@PathVariable LocalDateTime todate) throws Exception
+	{
+		return bookingService.getListofBookingByCustom(fromdate,todate);
+	}
+	
+	
+	// Get all Reviews for the Customer Analysis card in UI then we can filter the ratings and count of reviews 
+	//Once we are done with that filteration we need to create the Chart and Diagrams
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

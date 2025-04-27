@@ -3,6 +3,7 @@ package com.hotelbooking.cozyheaven.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,16 +21,19 @@ import com.hotelbooking.cozyheaven.service.CustomerService;
 
 @RestController
 @RequestMapping("/api/customer")
+@CrossOrigin(origins = {"http://localhost:5174/"})
 public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
-	
+
+	// add customer details from user sign up
 	@PostMapping("/add")
 	public Customer addCustomer(@RequestBody Customer customer) throws InvalidUsernameException
 	{
 		return customerService.addCustomer(customer);
 	}
 	
+	// get all customer details 
 	@GetMapping("/getAll")
 	public List<Customer> getAllEmployees()
 	{
@@ -65,8 +69,6 @@ public class CustomerController {
 			Customer customer = customerService.getCustomerById(id);
 			if(newValue.getName() != null)
 				customer.setName(newValue.getName());
-			if(newValue.getEmail() != null)
-				customer.setEmail(newValue.getEmail());
 			if(newValue.getAddress() != null)
 				customer.setAddress(newValue.getAddress());
 			if(newValue.getContact() != null)
