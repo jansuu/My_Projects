@@ -64,6 +64,11 @@ public class RoomController {
 	 {
 	        return roomService.getRoomsByAvailability(status);
 	 }
+	 
+	 @GetMapping("/byhotel/{hid}")
+	 public List<Room> getRoomByHotel(@PathVariable int hid){
+		 return roomService.getRoomByHotel(hid);
+	 }
 
 
 }

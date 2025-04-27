@@ -43,6 +43,10 @@ public class Room {
 
 	
 
+	public Room() {
+		super();
+	}
+
 	public Room(int id, String name, double pricePerNight, int maxCapacity, String aminities,
 			RoomAvailabilityStatus availabilityStatus, RoomType type, Hotel hotel) {
 		super();

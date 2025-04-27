@@ -25,9 +25,6 @@ public class User implements UserDetails {
 	private String username;
 
 	@Column(nullable = false)
-	private String email;
-
-	@Column(nullable = false)
 	private String password;
 
 	private String role;
@@ -46,7 +43,6 @@ public class User implements UserDetails {
 		super();
 		this.id = id;
 		this.username = username;
-		this.email = email;
 		this.password = password;
 		this.role = role;
 	}
@@ -67,13 +63,6 @@ public class User implements UserDetails {
 		this.username = username;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	public String getPassword() {
 		return password;
@@ -105,7 +94,7 @@ public class User implements UserDetails {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, id, password, role, username);
+		return Objects.hash(id, password, role, username);
 	}
 
 	@Override
@@ -117,9 +106,11 @@ public class User implements UserDetails {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(email, other.email) && id == other.id && Objects.equals(password, other.password)
-				&& Objects.equals(role, other.role) && Objects.equals(username, other.username);
+		return id == other.id && Objects.equals(password, other.password) && Objects.equals(role, other.role)
+				&& Objects.equals(username, other.username);
 	}
+
+	
 
 	
 }

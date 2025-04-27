@@ -28,8 +28,14 @@ public class Customer {
 
 	@Column(nullable = false)
 	private LocalDate accountCreatedAt;
+	
+	
 
 	
+	public Customer() {
+		super();
+	}
+
 	public Customer(int id, String name, String email, String address, String contact, LocalDate accountCreatedAt) {
 		super();
 		this.id = id;

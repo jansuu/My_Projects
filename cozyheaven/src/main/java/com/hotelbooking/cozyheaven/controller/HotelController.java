@@ -1,5 +1,6 @@
 package com.hotelbooking.cozyheaven.controller;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,6 +31,7 @@ import com.hotelbooking.cozyheaven.service.ReviewService;
 
 @RestController
 @RequestMapping("/api/hotel")
+
 public class HotelController {
 	@Autowired
 	private HotelService hotelService;
@@ -41,10 +43,10 @@ public class HotelController {
 	private ReviewService reviewService;
 
 	// Adding Hotel With Owner ID
-    @PostMapping("/add/{hotelownerid}")
-	public Hotel addHotel(@PathVariable int hotelownerid, @RequestBody Hotel hotel) throws InvalidIDException {
+    @PostMapping("/add")
+	public Hotel addHotel(Principal principal, @RequestBody Hotel hotel) throws InvalidIDException {
 
-		HotelOwner owner = hotelOwnerService.getOwnerByID(hotelownerid);
+		HotelOwner owner = hotelOwnerService.getOwnerByUsername(principal.getName());
 		hotel.setHotelOwner(owner);
 		hotel.setStatus(HotelStatus.PENDING);
 		hotel.setIsAvailable(HotelAvailability.NO);
@@ -53,10 +55,10 @@ public class HotelController {
 	}
 
 	// Get All Hotels With Owner Id
-	@GetMapping("/getbyowner/{hotelownerid}")
-	public List<Hotel> getHotelByOwnerID(@PathVariable int hotelownerid) throws InvalidIDException {
-		HotelOwner owner = hotelOwnerService.getOwnerByID(hotelownerid);
-		return hotelService.getHotelByOwnerID(hotelownerid);
+	@GetMapping("/getbyowner")
+	public List<Hotel> getHotelByOwnerID(Principal principal) throws InvalidIDException {
+		HotelOwner owner = hotelOwnerService.getOwnerByUsername(principal.getName());
+		return hotelService.getHotelByOwnerID(owner.getId());
 
 	}
 
@@ -163,10 +165,12 @@ public class HotelController {
 	}
 
 	// To Get Bookings By All Hotels Owned By Specific Owner
-	@GetMapping("/bookingbyowner/{ownerid}")
-	public List<Booking> getBookingByOwner(@PathVariable int ownerid) throws InvalidIDException {
-		HotelOwner owner=hotelOwnerService.getOwnerByID(ownerid);
-		return bookingService.getBookingByOwner(ownerid);
+	@GetMapping("/bookingbyowner")
+	public List<Booking> getBookingByOwner(Principal principal) throws InvalidIDException {
+		
+		HotelOwner owner=hotelOwnerService.getOwnerByUsername(principal.getName());
+		
+		return bookingService.getBookingByOwner(owner.getId());
 	
 
 	}

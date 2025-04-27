@@ -1,6 +1,7 @@
 package com.hotelbooking.cozyheaven.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hotelbooking.cozyheaven.exception.InvalidIDException;
+import com.hotelbooking.cozyheaven.exception.InvalidUsernameException;
 import com.hotelbooking.cozyheaven.model.HotelOwner;
 import com.hotelbooking.cozyheaven.model.User;
 import com.hotelbooking.cozyheaven.service.AuthService;
@@ -17,6 +19,7 @@ import com.hotelbooking.cozyheaven.service.HotelOwnerService;
 
 @RestController
 @RequestMapping("/api/hotelowner")
+@CrossOrigin(origins = {"http://localhost:5173/"})
 public class HotelOwnerController {
 	@Autowired
 	private HotelOwnerService hotelOwnerService;
@@ -24,10 +27,12 @@ public class HotelOwnerController {
 	private AuthService authService;
 
 	// To Add Hotel Owner
-	@PostMapping("/add/{userid}")
-	public HotelOwner addHotelOwner(@RequestBody HotelOwner hotelOwner,@PathVariable int userid) throws InvalidIDException {
+	@PostMapping("/add")
+	public HotelOwner addHotelOwner(@RequestBody HotelOwner hotelOwner) throws InvalidIDException, InvalidUsernameException {
 		
-		User user=authService.getUserById(userid);
+		User user=hotelOwner.getUser();
+		user.setRole("HotelOwner");
+		authService.signUp(user);
 		hotelOwner.setUser(user);
 		return hotelOwnerService.addHotelOwner(hotelOwner);
 

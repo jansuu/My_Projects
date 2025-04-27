@@ -69,4 +69,9 @@ public class RoomService
 		return roomRepository.save(room);
 	}
 
+	public List<Room> getRoomByHotel(int hid) {
+		
+		return roomRepository.findByHotelId(hid);
+	}
+
 }
