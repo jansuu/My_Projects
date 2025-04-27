@@ -21,7 +21,7 @@ import com.hotelbooking.cozyheaven.service.CustomerService;
 
 @RestController
 @RequestMapping("/api/customer")
-@CrossOrigin(origins = {"http://localhost:5173/"})
+@CrossOrigin(origins = {"http://localhost:5174/"})
 public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
@@ -69,8 +69,6 @@ public class CustomerController {
 			Customer customer = customerService.getCustomerById(id);
 			if(newValue.getName() != null)
 				customer.setName(newValue.getName());
-			if(newValue.getEmail() != null)
-				customer.setEmail(newValue.getEmail());
 			if(newValue.getAddress() != null)
 				customer.setAddress(newValue.getAddress());
 			if(newValue.getContact() != null)
