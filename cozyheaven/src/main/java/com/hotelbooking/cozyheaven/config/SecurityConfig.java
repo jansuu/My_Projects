@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -27,13 +28,12 @@ public class SecurityConfig {
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests((authorize) -> authorize
-						.requestMatchers("api/auth/signup").permitAll()
+		http.cors(Customizer.withDefaults()).csrf(csrf -> csrf.disable())
+				.authorizeHttpRequests((authorize) -> authorize.requestMatchers("api/auth/signup").permitAll()
 						.requestMatchers("/api/auth/login").authenticated()
 						.requestMatchers("/api/auth/token/generate").permitAll()
 						.requestMatchers("/api/auth/user/details").authenticated()
-						.requestMatchers("/api/hotelowner/add/{userid}").hasAnyAuthority("Admin","HotelOwner")
+						.requestMatchers("/api/hotelowner/add").permitAll()
 						.requestMatchers("/api/hotelowner/get/{ownerid}").hasAnyAuthority("Admin","HotelOwner")
 						.requestMatchers("/api/hotelowner/update/{ownerid}").hasAnyAuthority("Admin","HotelOwner")
 						.requestMatchers("/api/hotel/add/{hotelownerid}").hasAuthority("HotelOwner")
@@ -71,10 +71,7 @@ public class SecurityConfig {
 						.requestMatchers("/api/verificationrequest/pending").hasAuthority("Admin")
 						.requestMatchers("/api/verificationrequest/getbyowner/{ownerId}").hasAuthority("Admin")
 						.requestMatchers("/api/verificationrequest/all").hasAuthority("Admin")
-						.requestMatchers("/api/season/add").hasAuthority("Admin")
-						.requestMatchers("/api/season/getall").hasAnyAuthority("Admin","Customer","HotelOwner")
-						.requestMatchers("/api/season/getall").hasAuthority("Customer")
-						.requestMatchers("/api/discount/add/{hid}/{sid}").hasAuthority("Admin")
+						.requestMatchers("/api/discount/add/{hid}/{sid}").hasAuthority("Admin")//
 						.requestMatchers("/api/customer/add").permitAll()
 						.requestMatchers("/api/discount/gethotelname/{discountname}").hasAnyAuthority("Admin","Customer")
 						

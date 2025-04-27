@@ -18,63 +18,60 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /*
- * This class will override a method that will act as Filter.
- * 
- * OncePerRequestFilter; Every time a request for an API comes IN, Spring must
- * make it go thru this filter  
- * */
+* This class will override a method that will act as Filter.
+*
+* OncePerRequestFilter; Every time a request for an API comes IN, Spring must
+* make it go thru this filter  
+* */
 @Component
-public class JwtFilter extends OncePerRequestFilter{
+public class JwtFilter extends OncePerRequestFilter {
 
 	@Autowired
 	private JwtUtil jwtUtil;
-	
+
 	@Autowired
-	private MyUserService myUserService ;
-	
+	private MyUserService myUserService;
+
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, 
-			HttpServletResponse response, FilterChain filterChain)
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		 try {
-		/*
-		 * using request, i will take token from spring 
-		 * using jwtUtil, i vl decode that token: username 
-		 * using userSecurityService, i will fetch user details by username
-		 * role..
-		 * */
-		final String authorizationHeader = request.getHeader("Authorization");
-			//final String authorizationHeader = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5YXN1IiwiZXhwIjoxNzQ1ODQ3OTk0LCJpYXQiOjE3NDU3NjE1OTR9.YnLc5qo11g0UcrQwPy7r7WLKixZJUIH1xwMIs8K2vZ0";
-			//System.out.println("Auth Header " + authorizationHeader);
-		 String username = null;
-	     String jwt = null;
+		try {
+			/*
+			 * using request, i will take token from spring using jwtUtil, i vl decode that
+			 * token: username using userSecurityService, i will fetch user details by
+			 * username role..
+			 */
+			final String authorizationHeader = request.getHeader("Authorization");
+			//final String authorizationHeader ="Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkaG9uaUBnbWFpbC5jb20iLCJleHAiOjE3NDU1OTY4MzEsImlhdCI6MTc0NTUxMDQzMX0.JaWBeUsNcFZSrTrcJ_unmq6E_EuiFctK5N4d8XLUAbI";
+			//System.out.println(request.getHeader("Authorization"));
 
-	        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-	            jwt = authorizationHeader.substring(7);
-	            username = jwtUtil.extractUsername(jwt);
-	            System.out.println(username);
-	        }
-	        
-	        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+			String username = null;
+			String jwt = null;
 
-	            UserDetails userDetails = this.myUserService.loadUserByUsername(username);
+			if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+				jwt = authorizationHeader.substring(7);
+				username = jwtUtil.extractUsername(jwt);
+			}
 
-	            if (jwtUtil.validateToken(jwt, userDetails.getUsername())) {
+			if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-	                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = 
-	                    new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-	                usernamePasswordAuthenticationToken
-	                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-	                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-	            }
-	            
-	        }
-	        filterChain.doFilter(request, response);
-		 }
-		 catch(Exception e) {
-			 System.out.println(e.getMessage());
-			 //define global exception handler... todo 
-		 }
+				UserDetails userDetails = this.myUserService.loadUserByUsername(username);
+
+				if (jwtUtil.validateToken(jwt, userDetails.getUsername())) {
+
+					UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+							userDetails, null, userDetails.getAuthorities());
+					usernamePasswordAuthenticationToken
+							.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+					SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+				}
+
+			}
+			filterChain.doFilter(request, response);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			// define global exception handler... todo
+		}
 	}
 
 }

@@ -1,13 +1,11 @@
 package com.hotelbooking.cozyheaven.model;
 
 import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -31,9 +29,11 @@ public class Customer {
 	@Column(nullable = false)
 	private LocalDate accountCreatedAt;
 	
+	
+
+	
 	public Customer() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Customer(int id, String name, String email, String address, String contact, LocalDate accountCreatedAt) {
@@ -47,7 +47,6 @@ public class Customer {
 	}
 
 	@OneToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "id")
 	private User user;
 	
 	
@@ -91,6 +90,8 @@ public class Customer {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	
 
 	public String getContact() {
 		return contact;

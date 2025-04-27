@@ -29,4 +29,9 @@ public class HotelOwnerService {
 		return optional.get();
 	}
 
+	public HotelOwner getOwnerByUsername(String name) {
+		
+		return hotelOwnerRepository.findByUserUsername(name);
+	}
+
 }
